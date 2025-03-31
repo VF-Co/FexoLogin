@@ -1,19 +1,29 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { initializeAuth, getReactNativePersistence } from "firebase/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// Your web app's Firebase configuration
+// Configuración de Firebase (la que te dio tu amigo)
 const firebaseConfig = {
-    apiKey: "AIzaSyDjd77N-qWG6pDoZnX00yrQmcRJ9gd9kaE",
-    authDomain: "fexologin.firebaseapp.com",
-    projectId: "fexologin",
-    storageBucket: "fexologin.firebasestorage.app",
-    messagingSenderId: "704855216916",
-    appId: "1:704855216916:web:6fcd818e9a24b4c52e6801"
+    apiKey: "AIzaSyAcQ4U9sg1aTBA0jdj0Zy5iDQUKvVGVpWg",
+    authDomain: "fexo-450304.firebaseapp.com",
+    projectId: "fexo-450304",
+    storageBucket: "fexo-450304.appspot.com", // Asegúrate de incluir esto si lo necesitas
+    messagingSenderId: "TU_MESSAGING_SENDER_ID", // Agrega este campo si está en su config
+    appId: "TU_APP_ID", // Agrega este campo si está en su config
 };
 
-// Initialize Firebase
-const appFirebase = initializeApp(firebaseConfig);
+let app;
 
-export default appFirebase;
+// Evitar inicializar Firebase más de una vez
+if (!getApps().length) {
+    app = initializeApp(firebaseConfig);
+} else {
+    app = getApp();
+}
+
+// Inicializar autenticación con persistencia en React Native
+export const auth = initializeAuth(app, {
+    persistence: getReactNativePersistence(AsyncStorage),
+});
+
+export default app;

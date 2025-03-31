@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TextInput, TouchableOpacity, Pressable, Image, 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as LocalAuthentication from 'expo-local-authentication';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import appFirebase from '../credentials';
+import appFirebase from '../../credentials';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const auth = getAuth(appFirebase);
@@ -91,7 +91,7 @@ export default function Login(props) {
     return (
         <View style={styles.mainContainer}>
             <View>
-                <Image source={require('../assets/img/FEXO.jpg')} style={styles.img}/>
+                <Image source={require('../../assets/img/FEXO.jpg')} style={styles.img}/>
             </View>
             <View style={styles.form}>
                 <View>
