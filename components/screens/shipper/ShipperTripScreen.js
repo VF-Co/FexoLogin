@@ -1,7 +1,7 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export default function MainShipperLandingPage(){
+export default function ShipperTrip(){
     const navigation = useNavigation();
 
     return(

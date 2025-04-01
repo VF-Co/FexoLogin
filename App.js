@@ -9,18 +9,26 @@ import { Ionicons } from '@expo/vector-icons';
 
 import Login from './components/screens/Login';
 import Home from './components/screens/Home';
+
+//Shipper Screens
 import MainShipperLandingPage from './components/screens/shipper/MainShipperLandingPage';
-import MainCarrierLandingPage from './components/screens/carrier/MainCarrierLandingPage';
 import ShipperTripScreen from './components/screens/shipper/ShipperTripScreen';
 import ShipperSearch from './components/screens/shipper/ShipperSearch';
 import ShipperPayment from './components/screens/shipper/ShipperPayment';
 import ShipperProfile from './components/screens/shipper/ShipperProfile';
 
+//Carrier Screens
+import MainCarrierLandingPage from './components/screens/carrier/MainCarrierLandingPage';
+import CarrierTrip from './components/screens/carrier/CarrierTripsScreen';
+import CarrierSearch from './components/screens/carrier/CarrierSearch';
+import CarrierPayment from './components/screens/carrier/CarrierPayment';
+import CarrierProfile from './components/screens/carrier/CarrierProfile';
+
 export default function App() {
   const Stack = createNativeStackNavigator();
   const Tabs = createBottomTabNavigator();
 
-  function TabNavigation() {
+  function ShipperTabNavigation() {
     return (
       <Tabs.Navigator
         screenOptions={({ route }) => ({
@@ -52,6 +60,38 @@ export default function App() {
     );
   }
 
+  function CarrierTabNavigation() {
+    return (
+      <Tabs.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ color, size }) => {
+            let iconName;
+            if (route.name === 'Home') {
+              iconName = 'home-outline';
+            } else if (route.name === 'Trips') {
+              iconName = 'map-outline';
+            } else if (route.name === 'Search') {
+              iconName = 'search-outline';
+            } else if (route.name === 'Payments') {
+              iconName = 'wallet-outline';
+            } else if (route.name === 'Profile') {
+              iconName = 'person-outline';
+            }
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: '#00b4d8',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tabs.Screen name="Home" component={MainCarrierLandingPage} />
+        <Tabs.Screen name="Trips" component={CarrierTrip} />
+        <Tabs.Screen name="Search" component={CarrierSearch} />
+        <Tabs.Screen name="Payments" component={CarrierPayment} />
+        <Tabs.Screen name="Profile" component={CarrierProfile} />
+      </Tabs.Navigator>
+    );
+  }
+
   function MyNativeStack() {
     return (
       <Stack.Navigator>
@@ -66,8 +106,13 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="MainTabs"
-          component={TabNavigation}
+          name="ShipperTabs"
+          component={ShipperTabNavigation}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name='CarrierTabs'
+          component={CarrierTabNavigation}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

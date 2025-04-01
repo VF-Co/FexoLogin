@@ -1,39 +1,33 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export default function ShipperProfile(){
+export default function CarrierSearch(){
     const navigation = useNavigation();
 
     return(
         <View style={styles.container}>
-            <Text style={styles.title}>Shipper Account Section</Text>
+            <Text style={styles.title}>Carrier Search Section</Text>
             <View style={styles.buttonContainer}>
                 <Pressable
                     mode="contained"
                     // onPress={handleActiveTrip}
                     style={styles.btn}
                 >
-                    <Text>Address</Text>
+                    <Text>Search Trips</Text>
                 </Pressable>
                 <Pressable
                     mode="contained"
                     // onPress={handleUpcomingTrips}
                     style={styles.btn}
                 >
-                    <Text>Profile</Text>
+                    <Text>Confirmation Trip</Text>
                 </Pressable>
                 <Pressable
                     mode="contained"
                     // onPress={handleSearchTrips}
                     style={styles.btn}
                 >
-                    <Text>Settings</Text>
-                </Pressable>
-                <Pressable
-                    // onPress={handleInitialScreen}
-                    style={styles.btn}
-                >
-                    <Text>Support</Text>
+                    <Text>Trip Detail</Text>
                 </Pressable>
             </View>
         </View>

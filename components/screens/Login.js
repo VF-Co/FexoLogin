@@ -19,7 +19,7 @@ export default function Login(props) {
             await AsyncStorage.setItem('userEmail', email);
             await AsyncStorage.setItem('userPassword', password);
             Alert.alert('Logging in', 'Accessing....');
-            props.navigation.navigate('Home');
+            props.navigation.navigate('InitialScreen');
         } catch (error) {
             console.log("Error en login manual:", error);
             Alert.alert('Error!', 'Incorrect username or password');
@@ -78,7 +78,7 @@ export default function Login(props) {
             if (storedEmail && storedPassword) {
                 await signInWithEmailAndPassword(auth, storedEmail, storedPassword);
                 Alert.alert("Login Successful", "Welcome back!");
-                props.navigation.navigate('Home');
+                props.navigation.navigate('InitialScreen');
             } else {
                 Alert.alert("Error", "No credentials found. Please log in manually first.");
             }

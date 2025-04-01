@@ -6,10 +6,10 @@ export default function Home() {
     const navigation = useNavigation();
 
     const HandlerShipper = () => {
-        navigation.navigate('MainTabs', { screen: 'Shipper' })
+        navigation.navigate('ShipperTabs', { screen: 'Shipper' })
     }
     const HandlerCarrier = () => {
-        navigation.navigate('MainTabs', { screen: 'Carrier' })
+        navigation.navigate('CarrierTabs', { screen: 'Carrier' })
     }
     // const HandlerOperator = () => {
     //     navigation.navigate('ShipperMain')

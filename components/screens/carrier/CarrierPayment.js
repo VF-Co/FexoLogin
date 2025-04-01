@@ -1,39 +1,39 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export default function ShipperProfile(){
+export default function CarrierPayment(){
     const navigation = useNavigation();
 
     return(
         <View style={styles.container}>
-            <Text style={styles.title}>Shipper Account Section</Text>
+            <Text style={styles.title}>Payment Carrier Section</Text>
             <View style={styles.buttonContainer}>
                 <Pressable
                     mode="contained"
                     // onPress={handleActiveTrip}
                     style={styles.btn}
                 >
-                    <Text>Address</Text>
+                    <Text>Current Invoice</Text>
                 </Pressable>
                 <Pressable
                     mode="contained"
                     // onPress={handleUpcomingTrips}
                     style={styles.btn}
                 >
-                    <Text>Profile</Text>
+                    <Text>Past Invoices</Text>
                 </Pressable>
                 <Pressable
                     mode="contained"
                     // onPress={handleSearchTrips}
                     style={styles.btn}
                 >
-                    <Text>Settings</Text>
+                    <Text>Payments</Text>
                 </Pressable>
                 <Pressable
                     // onPress={handleInitialScreen}
                     style={styles.btn}
                 >
-                    <Text>Support</Text>
+                    <Text>Statements</Text>
                 </Pressable>
             </View>
         </View>
