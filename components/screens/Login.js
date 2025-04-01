@@ -5,6 +5,7 @@ import * as LocalAuthentication from 'expo-local-authentication';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import appFirebase from '../../credentials';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import Colors from '../../globals/colors';
 
 const auth = getAuth(appFirebase);
 
@@ -91,7 +92,7 @@ export default function Login(props) {
     return (
         <View style={styles.mainContainer}>
             <View>
-                <Image source={require('../../assets/img/FEXO.jpg')} style={styles.img}/>
+                <Image source={require('../../assets/img/FEXO LOGO-NO BACKGROUND.png')} style={styles.img}/>
             </View>
             <View style={styles.form}>
                 <View>
@@ -138,8 +139,8 @@ export default function Login(props) {
 // Estilos (sin cambios)
 const styles = StyleSheet.create({
     img: {
-        width: 150,
-        height: 150,
+        width: 200,
+        height: 225,
         borderRadius: 50,
         alignItems: 'center'
     },
@@ -147,14 +148,18 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: Colors.fexoBlue
     },
     title: {
         fontSize: 32,
         fontWeight: 'bold',
+        textAlign: 'center',
+        color: Colors.fexoBlue
     },
     subTitle: {
         color: '#6c757d',
         marginBottom: 15,
+        textAlign: 'center'
     },
     form: {
         margin: 20,
@@ -163,13 +168,14 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         width: '90%',
         padding: 20,
+        backgroundColor: Colors.fexoWhite,
     },
     textBox: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: 10,
         borderRadius: 7,
-        borderColor: '#ced4da',
+        borderColor: Colors.fexoGrey,
         borderWidth: 1,
         marginTop: 10,
         width: '100%',
@@ -181,18 +187,19 @@ const styles = StyleSheet.create({
     input: {
         flex: 1,
         fontSize: 16,
+        color: Colors.fexoBlue
     },
     btn: {
         padding: 12,
         borderRadius: 5,
-        backgroundColor: '#00b4d8',
+        backgroundColor: Colors.fexoOrange,
         marginTop: 15,
         width: '100%',
         alignItems: 'center',
     },
     btnText: {
         fontWeight: 'bold',
-        color: '#000',
+        color: Colors.fexoWhite,
         fontSize: 16,
     },
     pressed: {
@@ -201,7 +208,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     pressedText: {
-        color: '#00b4d8',
+        color: Colors.fexoBlue,
         textDecorationLine: 'underline'
     }
 });

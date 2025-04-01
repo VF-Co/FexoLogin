@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Colors from "../../../globals/colors";
 
 export default function CarrierPayment(){
     const navigation = useNavigation();
@@ -13,27 +14,27 @@ export default function CarrierPayment(){
                     // onPress={handleActiveTrip}
                     style={styles.btn}
                 >
-                    <Text>Current Invoice</Text>
+                    <Text style={styles.btnText}>Current Invoice</Text>
                 </Pressable>
                 <Pressable
                     mode="contained"
                     // onPress={handleUpcomingTrips}
                     style={styles.btn}
                 >
-                    <Text>Past Invoices</Text>
+                    <Text style={styles.btnText}>Past Invoices</Text>
                 </Pressable>
                 <Pressable
                     mode="contained"
                     // onPress={handleSearchTrips}
                     style={styles.btn}
                 >
-                    <Text>Payments</Text>
+                    <Text style={styles.btnText}>Payments</Text>
                 </Pressable>
                 <Pressable
                     // onPress={handleInitialScreen}
                     style={styles.btn}
                 >
-                    <Text>Statements</Text>
+                    <Text style={styles.btnText}>Statements</Text>
                 </Pressable>
             </View>
         </View>
@@ -59,10 +60,14 @@ const styles = StyleSheet.create({
     btn: {
         padding: 12,
         borderRadius: 25,
-        backgroundColor: '#00b4d8',
+        backgroundColor: Colors.fexoGrey,
         marginTop: 15,
         alignItems: 'center',
         marginHorizontal: 5,
         width: '45%'
     },
+    btnText: {
+        color: Colors.fexoWhite,
+        fontWeight: "700"
+        }
 })

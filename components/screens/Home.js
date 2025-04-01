@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, Image, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Colors from '../../globals/colors';
 
 export default function Home() {
     const navigation = useNavigation();
@@ -17,16 +18,16 @@ export default function Home() {
 
     return (
         <View style={styles.mainContainer}>
-            <Image source={require('../../assets/img/FEXO.jpg')} style={styles.img}/>
-            <Text style={styles.title}>Welcome to FEXO</Text>
+             <Text style={styles.title}>Welcome to</Text>
+            <Image source={require('../../assets/img/FEXO LOGO-NO BACKGROUND.png')} style={styles.img}/>
             <View style={styles.btnContainer}>
                 <Pressable style={styles.btn} onPress={HandlerShipper}>
                     <Text style={styles.btnText}>Shipper</Text>
                 </Pressable>
-                <Pressable style={styles.btn} onPress={HandlerCarrier}>
+                <Pressable style={styles.btn1} onPress={HandlerCarrier}>
                     <Text style={styles.btnText}>Carrier</Text>
                 </Pressable>
-                <Pressable style={styles.btn}>
+                <Pressable style={styles.btn2}>
                     <Text style={styles.btnText}>Operator</Text>
                 </Pressable>
             </View>
@@ -39,18 +40,18 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: Colors.fexoBlue
     },
     img: {
-        width: 150,
-        height: 150,
+        width: 200,
+        height: 250,
         borderRadius: 50,
         alignItems: 'center'
     },
     title: {
         fontSize: 30,
-        color: '#1b263b',
+        color: Colors.fexoWhite,
         fontWeight: 'bold',
-        marginVertical: 12,
     },
     btnContainer: {
         flexDirection: 'row',
@@ -60,7 +61,25 @@ const styles = StyleSheet.create({
     btn: {
         padding: 12,
         borderRadius: 25,
-        backgroundColor: '#00b4d8',
+        backgroundColor: Colors.fexoOrange,
+        marginTop: 15,
+        alignItems: 'center',
+        flex: 1,
+        marginHorizontal: 5,
+    },
+    btn1: {
+        padding: 12,
+        borderRadius: 25,
+        backgroundColor: Colors.fexoGrey,
+        marginTop: 15,
+        alignItems: 'center',
+        flex: 1,
+        marginHorizontal: 5,
+    },
+    btn2: {
+        padding: 12,
+        borderRadius: 25,
+        backgroundColor: '#000000',
         marginTop: 15,
         alignItems: 'center',
         flex: 1,

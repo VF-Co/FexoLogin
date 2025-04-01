@@ -23,6 +23,7 @@ import CarrierTrip from './components/screens/carrier/CarrierTripsScreen';
 import CarrierSearch from './components/screens/carrier/CarrierSearch';
 import CarrierPayment from './components/screens/carrier/CarrierPayment';
 import CarrierProfile from './components/screens/carrier/CarrierProfile';
+import Colors from './globals/colors';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -47,7 +48,7 @@ export default function App() {
             }
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: '#00b4d8',
+          tabBarActiveTintColor: Colors.fexoOrange,
           tabBarInactiveTintColor: 'gray',
         })}
       >
@@ -79,7 +80,7 @@ export default function App() {
             }
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: '#00b4d8',
+          tabBarActiveTintColor: Colors.fexoBlue,
           tabBarInactiveTintColor: 'gray',
         })}
       >
