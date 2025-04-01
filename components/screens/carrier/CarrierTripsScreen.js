@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Colors from "../../../globals/colors";
 
 export default function CarrierTrip(){
     const navigation = useNavigation();
@@ -13,14 +14,14 @@ export default function CarrierTrip(){
                     // onPress={handleActiveTrip}
                     style={styles.btn}
                 >
-                    <Text>Active Trip...</Text>
+                    <Text style={styles.btnText}>Active Trip...</Text>
                 </Pressable>
                 <Pressable
                     mode="contained"
                     // onPress={handleUpcomingTrips}
                     style={styles.btn}
                 >
-                    <Text>Complete / Historial</Text>
+                    <Text style={styles.btnText}>Complete / Historial</Text>
                 </Pressable>
             </View>
         </View>
@@ -46,10 +47,14 @@ const styles = StyleSheet.create({
     btn: {
         padding: 12,
         borderRadius: 25,
-        backgroundColor: '#00b4d8',
+        backgroundColor: Colors.fexoGrey,
         marginTop: 15,
         alignItems: 'center',
         marginHorizontal: 5,
         width: '45%'
     },
+    btnText: {
+        color: Colors.fexoWhite,
+        fontWeight: "700"
+        }
 })

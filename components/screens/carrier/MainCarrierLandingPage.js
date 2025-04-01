@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Colors from "../../../globals/colors";
 
 export default function MainCarrierLandingPage(){
     const navigation = useNavigation();
@@ -21,27 +22,27 @@ export default function MainCarrierLandingPage(){
                     // onPress={handleActiveTrip}
                     style={styles.btn}
                 >
-                    <Text>Active Trip</Text>
+                    <Text style={styles.btnText}>Active Trip</Text>
                 </Pressable>
                 <Pressable
                     mode="contained"
                     // onPress={handleUpcomingTrips}
                     style={styles.btn}
                 >
-                    <Text>Upcoming Trips</Text>
+                    <Text style={styles.btnText}>Upcoming Trips</Text>
                 </Pressable>
                 <Pressable
                     mode="contained"
                     // onPress={handleSearchTrips}
                     style={styles.btn}
                 >
-                    <Text>Search Trips</Text>
+                    <Text style={styles.btnText}>Search Trips</Text>
                 </Pressable>
                 <Pressable
                     onPress={handleInitialScreen}
                     style={styles.btn}
                 >
-                    <Text>Back to Initial Screen</Text>
+                    <Text style={styles.btnText}>Back to Initial Screen</Text>
                 </Pressable>
             </View>
         </View>
@@ -67,10 +68,14 @@ const styles = StyleSheet.create({
     btn: {
         padding: 12,
         borderRadius: 25,
-        backgroundColor: '#00b4d8',
+        backgroundColor: Colors.fexoGrey,
         marginTop: 15,
         alignItems: 'center',
         marginHorizontal: 5,
         width: '45%'
     },
+    btnText: {
+    color: Colors.fexoWhite,
+    fontWeight: "700"
+    }
 })
