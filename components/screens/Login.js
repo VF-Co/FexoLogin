@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Pressable, Image, Alert } from 'react-native';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Pressable, Image, Alert, ImageBackground } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as LocalAuthentication from 'expo-local-authentication';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -90,56 +90,58 @@ export default function Login(props) {
     };
 
     return (
-        <View style={styles.mainContainer}>
-            <View>
-                <Image source={require('../../assets/img/FEXO LOGO-NO BACKGROUND.png')} style={styles.img}/>
-            </View>
-
-            <View>
-                    <Text style={styles.title}>Login</Text>
-                    <Text style={styles.subTitle}>Sign in to your account</Text>
-            </View>
-
-            <View style={styles.form}>
-                <View style={styles.inputContainer}>
-                    <View style={styles.textBox}>
-                        <Ionicons name="mail-outline" size={20} color="#6c757d" style={styles.icon} />
-                        <TextInput
-                            placeholder="Email"
-                            style={styles.input}
-                            keyboardType="email-address"
-                            value={email}
-                            onChangeText={(text) => setEmail(text)}
-                        />
-                    </View>
-                    <View style={styles.textBox}>
-                        <Ionicons name="lock-closed-outline" size={20} color="#6c757d" style={styles.icon} />
-                        <TextInput
-                            placeholder="Password"
-                            style={styles.input}
-                            secureTextEntry
-                            value={password}
-                            onChangeText={(text) => setPassword(text)}
-                        />
-                    </View>
+        <ImageBackground source={require('../../assets/img/Background.png')} style={styles.background}>
+            <View style={styles.mainContainer}>
+                <View>
+                    <Image source={require('../../assets/img/FEXO LOGO-NO BACKGROUND.png')} style={styles.img}/>
                 </View>
 
-                <Pressable style={styles.pressed}>
-                     <Text style={styles.pressedText2}>Don't have an account?   </Text> 
-                     <Text style={styles.signUp}>Sign Up</Text>
-                 </Pressable>
+                <View>
+                        <Text style={styles.title}>Login</Text>
+                        <Text style={styles.subTitle}>Sign in to your account</Text>
+                </View>
 
-                <TouchableOpacity style={styles.btn} onPress={login}>
-                    <Text style={styles.btnText}>Login</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.btn} onPress={handleBiometricAuth}>
-                    <Text style={styles.btnText}>Login with Biometrics</Text>
-                </TouchableOpacity>
-                <Pressable style={styles.pressed}>
-                    <Text style={styles.pressedText}>Forgot Your password?</Text>
-                </Pressable>
+                <View style={styles.form}>
+                    <View style={styles.inputContainer}>
+                        <View style={styles.textBox}>
+                            <Ionicons name="mail-outline" size={20} color="#6c757d" style={styles.icon} />
+                            <TextInput
+                                placeholder="Email"
+                                style={styles.input}
+                                keyboardType="email-address"
+                                value={email}
+                                onChangeText={(text) => setEmail(text)}
+                            />
+                        </View>
+                        <View style={styles.textBox}>
+                            <Ionicons name="lock-closed-outline" size={20} color="#6c757d" style={styles.icon} />
+                            <TextInput
+                                placeholder="Password"
+                                style={styles.input}
+                                secureTextEntry
+                                value={password}
+                                onChangeText={(text) => setPassword(text)}
+                            />
+                        </View>
+                    </View>
+
+                    <Pressable style={styles.pressed}>
+                            <Text style={styles.pressedText2}>Don't have an account?   </Text> 
+                            <Text style={styles.signUp}>Sign Up</Text>
+                    </Pressable>
+
+                    <TouchableOpacity style={styles.btn} onPress={login}>
+                        <Text style={styles.btnText}>Login</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.btn} onPress={handleBiometricAuth}>
+                        <Text style={styles.btnText}>Login with Biometrics</Text>
+                    </TouchableOpacity>
+                    <Pressable style={styles.pressed}>
+                        <Text style={styles.pressedText}>Forgot Your password?</Text>
+                    </Pressable>
+                </View>
             </View>
-        </View>
+        </ImageBackground>
     );
 }
 
@@ -151,11 +153,16 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         alignItems: 'center'
     },
+    background: {
+        flex: 1,
+        resizeMode: 'cover', // Asegura que la imagen cubra toda la pantalla
+        justifyContent: 'center',
+    },
     mainContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.fexoBlue,
+        backgroundColor: 'transparent', // Elimina el color de fondo
     },
     title: {
         fontSize: 36,

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Login",
-    "slug": "Login",
+    "name": "FEXO",
+    "slug": "FEXO",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/img/FEXO-LOGO.jpg",
@@ -24,7 +24,7 @@
         "USE_BIOMETRIC"
       ],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/img/FEXO-LOGO.jpg",
         "backgroundColor": "#ffffff"
       },
       "package": "com.josemarios.Login"

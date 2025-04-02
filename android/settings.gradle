@@ -21,7 +21,7 @@ extensions.configure(com.facebook.react.ReactSettingsExtension) { ex ->
   }
 }
 
-rootProject.name = 'Login'
+rootProject.name = 'FEXO'
 
 dependencyResolutionManagement {
   versionCatalogs {
