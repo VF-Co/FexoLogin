@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     },
     btn: {
         padding: 12,
-        borderRadius: 5,
+        borderRadius: 35,
         backgroundColor: Colors.fexoOrange,
         marginTop: 15,
         width: '100%',

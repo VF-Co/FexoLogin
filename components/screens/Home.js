@@ -18,7 +18,7 @@ export default function Home() {
 
     return (
         <View style={styles.mainContainer}>
-             <Text style={styles.title}>Welcome to</Text>
+            <Text style={styles.title}>Welcome to</Text>
             <Image source={require('../../assets/img/FEXO LOGO-NO BACKGROUND.png')} style={styles.img}/>
             <View style={styles.btnContainer}>
                 <Pressable style={styles.btn} onPress={HandlerShipper}>
