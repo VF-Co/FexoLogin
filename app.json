@@ -4,7 +4,7 @@
     "slug": "Login",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/img/FEXO-LOGO.jpg",
     "userInterfaceStyle": "light",
     "newArchEnabled": false,
     "splash": {

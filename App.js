@@ -26,6 +26,7 @@ import CarrierSearch from './components/screens/carrier/CarrierSearch';
 import CarrierPayment from './components/screens/carrier/CarrierPayment';
 import CarrierProfile from './components/screens/carrier/CarrierProfile';
 import Colors from './globals/colors';
+import SplashScreen from './components/screens/SplashScreen';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -99,6 +100,11 @@ export default function App() {
   function MyNativeStack() {
     return (
       <Stack.Navigator>
+        <Stack.Screen
+          name='Splash'
+          component={SplashScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="FEXO"
           component={Login}
