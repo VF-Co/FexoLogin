@@ -5,6 +5,10 @@ import Colors from "../../../globals/colors";
 export default function ShipperTrip(){
     const navigation = useNavigation();
 
+    const HandlerWorkorder = () => {
+        navigation.navigate('TripForm')
+    };
+
     return(
         <View style={styles.container}>
             <Text style={styles.title}>Shipper Trip Manager</Text>
@@ -18,7 +22,7 @@ export default function ShipperTrip(){
                 </Pressable>
                 <Pressable
                     mode="contained"
-                    // onPress={handleUpcomingTrips}
+                    onPress={HandlerWorkorder}
                     style={styles.btn}
                 >
                     <Text style={styles.btnText}>Add Workorder</Text>

@@ -17,6 +17,7 @@ import ShipperTripScreen from './components/screens/shipper/ShipperTripScreen';
 import ShipperSearch from './components/screens/shipper/ShipperSearch';
 import ShipperPayment from './components/screens/shipper/ShipperPayment';
 import ShipperProfile from './components/screens/shipper/ShipperProfile';
+import TripsForm from './components/screens/TripsForm'
 
 //Carrier Screens
 import MainCarrierLandingPage from './components/screens/carrier/MainCarrierLandingPage';
@@ -58,6 +59,7 @@ export default function App() {
         <Tabs.Screen name="Search" component={ShipperSearch} />
         <Tabs.Screen name="Payments" component={ShipperPayment} />
         <Tabs.Screen name="Profile" component={ShipperProfile} />
+        {/* <Tabs.Screen name='TripForm' component={TripsForm} /> */}
       </Tabs.Navigator>
     );
   }
@@ -117,12 +119,18 @@ export default function App() {
           component={CarrierTabNavigation}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name='TripForm'
+          component={TripsForm}
+          options={{headerShown: true}}
+        />
       </Stack.Navigator>
     );
   }
 
   return (
     <NavigationContainer>
+      <StatusBar style='auto'/>
       <MyNativeStack />
     </NavigationContainer>
   );
