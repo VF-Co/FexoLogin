@@ -101,33 +101,28 @@ export default function Login(props) {
             </View>
 
             <View style={styles.form}>
-
-                <View style={styles.textBox}>
-                    <Ionicons name="mail-outline" size={20} color="#6c757d" style={styles.icon} />
-                    <TextInput
-                        placeholder="Email"
-                        style={styles.input}
-                        keyboardType="email-address"
-                        value={email}
-                        onChangeText={(text) => setEmail(text)}
-                    />
+                <View style={styles.inputContainer}>
+                    <View style={styles.textBox}>
+                        <Ionicons name="mail-outline" size={20} color="#6c757d" style={styles.icon} />
+                        <TextInput
+                            placeholder="Email"
+                            style={styles.input}
+                            keyboardType="email-address"
+                            value={email}
+                            onChangeText={(text) => setEmail(text)}
+                        />
+                    </View>
+                    <View style={styles.textBox}>
+                        <Ionicons name="lock-closed-outline" size={20} color="#6c757d" style={styles.icon} />
+                        <TextInput
+                            placeholder="Password"
+                            style={styles.input}
+                            secureTextEntry
+                            value={password}
+                            onChangeText={(text) => setPassword(text)}
+                        />
+                    </View>
                 </View>
-
-                <View style={styles.textBox}>
-                    <Ionicons name="lock-closed-outline" size={20} color="#6c757d" style={styles.icon} />
-                    <TextInput
-                        placeholder="Password"
-                        style={styles.input}
-                        secureTextEntry
-                        value={password}
-                        onChangeText={(text) => setPassword(text)}
-                    />
-                </View>
-
-                <Pressable style={styles.pressed}>
-                    <Text style={styles.pressedText2}>Don't have an account?   </Text> 
-                    <Text style={styles.signUp}>Sign Up</Text>
-                </Pressable>
 
                 <TouchableOpacity style={styles.btn} onPress={login}>
                     <Text style={styles.btnText}>Login</Text>
@@ -171,19 +166,22 @@ const styles = StyleSheet.create({
     },
     form: {
         margin: 20,
-        borderRadius: 7,
+        // borderRadius: 35,
         borderColor: '#ced4da',
         borderWidth: 0,
         width: '95%',
         padding: 20,
         backgroundColor: 'transparent',
     },
+    inputContainer: {
+        borderRadius: 10, // Bordes redondeados solo en el exterior
+        overflow: 'hidden', // Asegura que los hijos no sobresalgan del borde
+    },
     textBox: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: 15,
-        borderRadius: 3,
-        borderColor: Colors.fexoGrey,
+        borderColor: '#ced4da',
         borderWidth: 0.5,
         marginTop: -2,
         width: '100%',
