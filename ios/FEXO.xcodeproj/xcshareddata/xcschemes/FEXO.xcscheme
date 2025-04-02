@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Login.app"
-               BlueprintName = "Login"
-               ReferencedContainer = "container:Login.xcodeproj">
+               BuildableName = "FEXO.app"
+               BlueprintName = "FEXO"
+               ReferencedContainer = "container:FEXO.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "LoginTests.xctest"
-               BlueprintName = "LoginTests"
-               ReferencedContainer = "container:Login.xcodeproj">
+               BuildableName = "FEXOTests.xctest"
+               BlueprintName = "FEXOTests"
+               ReferencedContainer = "container:FEXO.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Login.app"
-            BlueprintName = "Login"
-            ReferencedContainer = "container:Login.xcodeproj">
+            BuildableName = "FEXO.app"
+            BlueprintName = "FEXO"
+            ReferencedContainer = "container:FEXO.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Login.app"
-            BlueprintName = "Login"
-            ReferencedContainer = "container:Login.xcodeproj">
+            BuildableName = "FEXO.app"
+            BlueprintName = "FEXO"
+            ReferencedContainer = "container:FEXO.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
