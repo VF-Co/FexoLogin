@@ -29,7 +29,7 @@ export default function Home() {
                         <Text style={styles.btnText}>Carrier</Text>
                     </Pressable>
                     <Pressable style={styles.btn2}>
-                        <Text style={styles.btnText}>Operator</Text>
+                        <Text style={styles.btnText1}>Operator</Text>
                     </Pressable>
                 </View>
             </View>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     btn2: {
         padding: 12,
         borderRadius: 25,
-        backgroundColor: '#000000',
+        backgroundColor: '#10B981',
         marginTop: 15,
         alignItems: 'center',
         flex: 1,
@@ -95,6 +95,10 @@ const styles = StyleSheet.create({
     },
     btnText: {
         color: 'white',
+        fontWeight: 'bold'
+    },
+    btnText1: {
+        color: Colors.fexoWhite,
         fontWeight: 'bold'
     },
 })
