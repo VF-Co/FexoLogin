@@ -94,16 +94,18 @@ export default function Login(props) {
             <View>
                 <Image source={require('../../assets/img/FEXO LOGO-NO BACKGROUND.png')} style={styles.img}/>
             </View>
-            <View style={styles.form}>
-                <View>
+
+            <View>
                     <Text style={styles.title}>Login</Text>
                     <Text style={styles.subTitle}>Sign in to your account</Text>
-                </View>
+            </View>
+
+            <View style={styles.form}>
 
                 <View style={styles.textBox}>
                     <Ionicons name="mail-outline" size={20} color="#6c757d" style={styles.icon} />
                     <TextInput
-                        placeholder="Email or username"
+                        placeholder="Email"
                         style={styles.input}
                         keyboardType="email-address"
                         value={email}
@@ -122,6 +124,11 @@ export default function Login(props) {
                     />
                 </View>
 
+                <Pressable style={styles.pressed}>
+                    <Text style={styles.pressedText2}>Don't have an account?   </Text> 
+                    <Text style={styles.signUp}>Sign Up</Text>
+                </Pressable>
+
                 <TouchableOpacity style={styles.btn} onPress={login}>
                     <Text style={styles.btnText}>Login</Text>
                 </TouchableOpacity>
@@ -129,7 +136,7 @@ export default function Login(props) {
                     <Text style={styles.btnText}>Login with Biometrics</Text>
                 </TouchableOpacity>
                 <Pressable style={styles.pressed}>
-                    <Text style={styles.pressedText}>Forgot password?</Text>
+                    <Text style={styles.pressedText}>Forgot Your password?</Text>
                 </Pressable>
             </View>
         </View>
@@ -139,8 +146,8 @@ export default function Login(props) {
 // Estilos (sin cambios)
 const styles = StyleSheet.create({
     img: {
-        width: 200,
-        height: 225,
+        width: 350,
+        height: 150,
         borderRadius: 50,
         alignItems: 'center'
     },
@@ -148,38 +155,40 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: Colors.fexoBlue
+        backgroundColor: Colors.fexoBlue,
     },
     title: {
-        fontSize: 32,
-        fontWeight: 'bold',
+        fontSize: 36,
+        fontWeight: '700',
         textAlign: 'center',
-        color: Colors.fexoBlue
+        color: Colors.fexoWhite,
+        marginBottom: 10
     },
     subTitle: {
-        color: '#6c757d',
-        marginBottom: 15,
+        color: Colors.fexoWhite,
+        marginBottom: 0,
         textAlign: 'center'
     },
     form: {
         margin: 20,
         borderRadius: 7,
         borderColor: '#ced4da',
-        borderWidth: 1,
-        width: '90%',
+        borderWidth: 0,
+        width: '95%',
         padding: 20,
-        backgroundColor: Colors.fexoWhite,
+        backgroundColor: 'transparent',
     },
     textBox: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: 10,
-        borderRadius: 7,
+        paddingVertical: 15,
+        borderRadius: 3,
         borderColor: Colors.fexoGrey,
-        borderWidth: 1,
-        marginTop: 10,
+        borderWidth: 0.5,
+        marginTop: -2,
         width: '100%',
         paddingHorizontal: 10,
+        backgroundColor: Colors.fexoWhite,
     },
     icon: {
         marginRight: 10,
@@ -203,12 +212,22 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     pressed: {
-        marginTop: 15,
+        marginTop: 20,
         width: '100%',
         alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginBottom: 5
     },
     pressedText: {
-        color: Colors.fexoBlue,
+        color: Colors.fexoWhite,
         textDecorationLine: 'underline'
-    }
+    },
+    pressedText2: {
+        marginTop: 0,
+        color: Colors.fexoWhite,
+    },
+    signUp: {
+        color: '#4D81E7',
+    },
 });
