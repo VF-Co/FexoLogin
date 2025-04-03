@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "FEXO",
+    "slug": "FEXO",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/img/FEXO-LOGO.jpg",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": false,
+    "splash": {
+      "image": "./assets/img/FEXO LOGO-NO BACKGROUND.png",
+      "resizeMode": "contain",
+      "backgroundColor": "##0F2A5D"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "We need your Face ID to log in"
+      },
+      "bundleIdentifier": "com.josemarios.Login"
+    },
+    "android": {
+      "permissions": [
+        "USE_BIOMETRIC"
+      ],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/img/FEXO-LOGO.jpg",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.josemarios.Login"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
