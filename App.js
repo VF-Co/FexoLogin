@@ -27,6 +27,7 @@ import CarrierPayment from './components/screens/carrier/CarrierPayment';
 import CarrierProfile from './components/screens/carrier/CarrierProfile';
 import Colors from './globals/colors';
 import SplashScreen from './components/screens/SplashScreen';
+import TripClientSearch from './components/screens/TripClientSearch';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -128,6 +129,11 @@ export default function App() {
         <Stack.Screen
           name='TripForm'
           component={TripsForm}
+          options={{headerShown: true}}
+        />
+        <Stack.Screen
+          name='ClientSearch'
+          component={TripClientSearch}
           options={{headerShown: true}}
         />
       </Stack.Navigator>
