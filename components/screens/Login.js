@@ -12,6 +12,7 @@ const auth = getAuth(appFirebase);
 export default function Login(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     // Handle normal authentication 
     const login = async () => {
@@ -118,10 +119,13 @@ export default function Login(props) {
                             <TextInput
                                 placeholder="Password"
                                 style={styles.input}
-                                secureTextEntry
+                                secureTextEntry={!showPassword}
                                 value={password}
                                 onChangeText={(text) => setPassword(text)}
                             />
+                            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                                <Ionicons name={showPassword ? "eye-off-outline" : "eye-outline"} size={20} color="#6c757d" />
+                            </TouchableOpacity>
                         </View>
                     </View>
 
