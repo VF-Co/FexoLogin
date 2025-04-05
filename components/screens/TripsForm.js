@@ -79,7 +79,7 @@ const TripForm = ({ navigation }) => {
 
     const handleCreateOrder = async () => {
         try {
-            const url = 'http://192.168.1.51:8080/?api_key=Z1Y5yvAIwxfVOzHn444W4BO2bf8YIqmM-rsZUXGuCV8=';
+            const url = 'http://localhost:8080/?api_key=Z1Y5yvAIwxfVOzHn444W4BO2bf8YIqmM-rsZUXGuCV8=';
             const response = await fetch(url, {
                 method: 'GET',
                 headers: {
