@@ -11,9 +11,9 @@ import { Ionicons } from '@expo/vector-icons';
 import Login from './components/screens/Login';
 import Home from './components/screens/Home';
 import SessionManager from './components/screens/SessionManager';
-
-//Password
 import FPassword1 from './components/screens/ForgetPassword/FPassword1';
+import SignUp from './components/screens/SignUp';
+
 
 //Shipper Screens
 import MainShipperLandingPage from './components/screens/shipper/MainShipperLandingPage';
@@ -157,6 +157,11 @@ export default function App() {
           component={TripClientSearch}
           options={{headerShown: true}}
         />
+         <Stack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{ headerShown: false }}
+      />
       </Stack.Navigator>
     );
   }

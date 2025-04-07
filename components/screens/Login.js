@@ -7,6 +7,7 @@ import appFirebase from '../../credentials';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import Colors from '../../globals/colors';
 import { useNavigation } from '@react-navigation/native';
+import SignUp from './SignUp';
 
 const auth = getAuth(appFirebase);
 
@@ -94,6 +95,10 @@ export default function Login(props) {
 
     const handleForgotPassword = () => {
         navigation.navigate('Step1')
+    const navigation = useNavigation();
+
+    const HandlerSignUp = () => {
+        navigation.navigate('SignUp')
     }
 
     return (
@@ -138,6 +143,12 @@ export default function Login(props) {
                     <View style={styles.pressed}>
                             <Text style={styles.pressedText2}>Don't have an account? </Text> 
                             <Text style={styles.signUp}>Sign Up</Text>
+                    
+                    <View style={styles.pressed}>
+                    <Text style={styles.pressedText2}>Don't have an account?   </Text> 
+                    <Pressable onPress={HandlerSignUp}>
+                            <Text style={styles.signUp}>Sign Up</Text>
+                    </Pressable>
                     </View>
 
                     <TouchableOpacity style={styles.btn} onPress={login}>
