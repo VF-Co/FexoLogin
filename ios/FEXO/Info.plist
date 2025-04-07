@@ -51,5 +51,10 @@
 	<false/>
 	<key>NSFaceIDUsageDescription</key>
 	<string>We need your Face ID to log in</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

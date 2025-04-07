@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Pressable, Image, Alert, ImageBackground } from 'react-native';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Pressable, Image, Alert, ImageBackground, StatusBar } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as LocalAuthentication from 'expo-local-authentication';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import appFirebase from '../../credentials';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import Colors from '../../globals/colors';
+import { useNavigation } from '@react-navigation/native';
 
 const auth = getAuth(appFirebase);
 
@@ -13,6 +14,7 @@ export default function Login(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const navigation = useNavigation();
 
     // Handle normal authentication 
     const login = async () => {
@@ -90,6 +92,10 @@ export default function Login(props) {
         }
     };
 
+    const handleForgotPassword = () => {
+        navigation.navigate('Step1')
+    }
+
     return (
         <ImageBackground source={require('../../assets/img/Background.png')} style={styles.background}>
             <View style={styles.mainContainer}>
@@ -129,10 +135,10 @@ export default function Login(props) {
                         </View>
                     </View>
 
-                    <Pressable style={styles.pressed}>
-                            <Text style={styles.pressedText2}>Don't have an account?   </Text> 
+                    <View style={styles.pressed}>
+                            <Text style={styles.pressedText2}>Don't have an account? </Text> 
                             <Text style={styles.signUp}>Sign Up</Text>
-                    </Pressable>
+                    </View>
 
                     <TouchableOpacity style={styles.btn} onPress={login}>
                         <Text style={styles.btnText}>Login</Text>
@@ -140,7 +146,7 @@ export default function Login(props) {
                     <TouchableOpacity style={styles.btn} onPress={handleBiometricAuth}>
                         <Text style={styles.btnText}>Login with Biometrics</Text>
                     </TouchableOpacity>
-                    <Pressable style={styles.pressed}>
+                    <Pressable style={styles.pressed} onPress={handleForgotPassword}>
                         <Text style={styles.pressedText}>Forgot Your password?</Text>
                     </Pressable>
                 </View>
