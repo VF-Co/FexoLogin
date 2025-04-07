@@ -94,12 +94,12 @@ export default function Login(props) {
     };
 
     const handleForgotPassword = () => {
-        navigation.navigate('Step1')
-    const navigation = useNavigation();
-
+        navigation.navigate('Step1');
+    };
+    
     const HandlerSignUp = () => {
-        navigation.navigate('SignUp')
-    }
+        navigation.navigate('SignUp');
+    };    
 
     return (
         <ImageBackground source={require('../../assets/img/Background.png')} style={styles.background}>
@@ -139,11 +139,6 @@ export default function Login(props) {
                             </TouchableOpacity>
                         </View>
                     </View>
-
-                    <View style={styles.pressed}>
-                            <Text style={styles.pressedText2}>Don't have an account? </Text> 
-                            <Text style={styles.signUp}>Sign Up</Text>
-                    
                     <View style={styles.pressed}>
                     <Text style={styles.pressedText2}>Don't have an account?   </Text> 
                     <Pressable onPress={HandlerSignUp}>
