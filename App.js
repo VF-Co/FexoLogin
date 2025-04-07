@@ -10,7 +10,10 @@ import { Ionicons } from '@expo/vector-icons';
 
 import Login from './components/screens/Login';
 import Home from './components/screens/Home';
+import SessionManager from './components/screens/SessionManager';
+import FPassword1 from './components/screens/ForgetPassword/FPassword1';
 import SignUp from './components/screens/SignUp';
+
 
 //Shipper Screens
 import MainShipperLandingPage from './components/screens/shipper/MainShipperLandingPage';
@@ -29,6 +32,8 @@ import CarrierProfile from './components/screens/carrier/CarrierProfile';
 import Colors from './globals/colors';
 import SplashScreen from './components/screens/SplashScreen';
 import TripClientSearch from './components/screens/TripClientSearch';
+import FPassword2 from './components/screens/ForgetPassword/FPassword2';
+import FPassword3 from './components/screens/ForgetPassword/FPassword3';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -118,6 +123,21 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
+          name='Step1'
+          component={FPassword1}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name='Step2'
+          component={FPassword2}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name='Step3'
+          component={FPassword3}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="ShipperTabs"
           component={ShipperTabNavigation}
           options={{ headerShown: false }}
@@ -148,8 +168,10 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <StatusBar style='auto'/>
-      <MyNativeStack />
+      <SessionManager>
+        <StatusBar style='auto'/>
+        <MyNativeStack />
+      </SessionManager>
     </NavigationContainer>
   );
 }
