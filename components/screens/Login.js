@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Pressable, Image, Alert, ImageBackground, StatusBar } from 'react-native';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Pressable, Image, Alert, ImageBackground, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as LocalAuthentication from 'expo-local-authentication';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -103,60 +104,73 @@ export default function Login(props) {
 
     return (
         <ImageBackground source={require('../../assets/img/Background.png')} style={styles.background}>
-            <View style={styles.mainContainer}>
-                <View>
-                    <Image source={require('../../assets/img/FEXO LOGO-NO BACKGROUND.png')} style={styles.img}/>
-                </View>
+            <SafeAreaView style={{flex: 1}}>
+                <KeyboardAvoidingView
+                    style={{ flex: 1 }}
+                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                    keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+                >
+                    <ScrollView
+                        contentContainerStyle={{ flexGrow: 1 }}
+                        keyboardShouldPersistTaps="handled"
+                    >
+                        <View style={styles.mainContainer}>
+                            <View>
+                                <Image source={require('../../assets/img/FEXO LOGO-NO BACKGROUND.png')} style={styles.img}/>
+                            </View>
 
-                <View>
-                        <Text style={styles.title}>Login</Text>
-                        <Text style={styles.subTitle}>Sign in to your account</Text>
-                </View>
+                            <View>
+                                    <Text style={styles.title}>Login</Text>
+                                    <Text style={styles.subTitle}>Sign in to your account</Text>
+                            </View>
 
-                <View style={styles.form}>
-                    <View style={styles.inputContainer}>
-                        <View style={styles.textBox}>
-                            <Ionicons name="mail-outline" size={20} color="#6c757d" style={styles.icon} />
-                            <TextInput
-                                placeholder="Email"
-                                style={styles.input}
-                                keyboardType="email-address"
-                                value={email}
-                                onChangeText={(text) => setEmail(text)}
-                            />
+                            <View style={styles.form}>
+                                <View style={styles.inputContainer}>
+                                    <View style={styles.textBox}>
+                                        <Ionicons name="mail-outline" size={20} color="#6c757d" style={styles.icon} />
+                                        <TextInput
+                                            placeholder="Email"
+                                            style={styles.input}
+                                            keyboardType="email-address"
+                                            value={email}
+                                            onChangeText={(text) => setEmail(text)}
+                                        />
+                                    </View>
+                                    <View style={styles.textBox}>
+                                        <Ionicons name="lock-closed-outline" size={20} color="#6c757d" style={styles.icon} />
+                                        <TextInput
+                                            placeholder="Password"
+                                            style={styles.input}
+                                            secureTextEntry={!showPassword}
+                                            value={password}
+                                            onChangeText={(text) => setPassword(text)}
+                                        />
+                                        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                                            <Ionicons name={showPassword ? "eye-off-outline" : "eye-outline"} size={20} color="#6c757d" />
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                                <View style={styles.pressed}>
+                                <Text style={styles.pressedText2}>Don't have an account?   </Text> 
+                                <Pressable onPress={HandlerSignUp}>
+                                        <Text style={styles.signUp}>Sign Up</Text>
+                                </Pressable>
+                                </View>
+
+                                <TouchableOpacity style={styles.btn} onPress={login}>
+                                    <Text style={styles.btnText}>Login</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.btn} onPress={handleBiometricAuth}>
+                                    <Text style={styles.btnText}>Login with Biometrics</Text>
+                                </TouchableOpacity>
+                                <Pressable style={styles.pressed} onPress={handleForgotPassword}>
+                                    <Text style={styles.pressedText}>Forgot Your password?</Text>
+                                </Pressable>
+                            </View>
                         </View>
-                        <View style={styles.textBox}>
-                            <Ionicons name="lock-closed-outline" size={20} color="#6c757d" style={styles.icon} />
-                            <TextInput
-                                placeholder="Password"
-                                style={styles.input}
-                                secureTextEntry={!showPassword}
-                                value={password}
-                                onChangeText={(text) => setPassword(text)}
-                            />
-                            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                                <Ionicons name={showPassword ? "eye-off-outline" : "eye-outline"} size={20} color="#6c757d" />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View style={styles.pressed}>
-                    <Text style={styles.pressedText2}>Don't have an account?   </Text> 
-                    <Pressable onPress={HandlerSignUp}>
-                            <Text style={styles.signUp}>Sign Up</Text>
-                    </Pressable>
-                    </View>
-
-                    <TouchableOpacity style={styles.btn} onPress={login}>
-                        <Text style={styles.btnText}>Login</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.btn} onPress={handleBiometricAuth}>
-                        <Text style={styles.btnText}>Login with Biometrics</Text>
-                    </TouchableOpacity>
-                    <Pressable style={styles.pressed} onPress={handleForgotPassword}>
-                        <Text style={styles.pressedText}>Forgot Your password?</Text>
-                    </Pressable>
-                </View>
-            </View>
+                    </ScrollView>
+                </KeyboardAvoidingView>
+            </SafeAreaView>
         </ImageBackground>
     );
 }

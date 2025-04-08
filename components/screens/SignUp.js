@@ -11,7 +11,9 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
+  ScrollView
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Colors from '../../globals/colors';
@@ -33,8 +35,19 @@ function SignUp({ navigation }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = (event, selectedDate) => {
-    const currentDate = selectedDate || selectedDate;
-    setSelectedDate(currentDate);
+    if (Platform.OS === 'android') {
+      // En Android, cerrar el picker y actualizar la fecha si se selecciona
+      setShowDatePicker(false);
+      if (event.type === 'set' && selectedDate) {
+        setSelectedDate(selectedDate);
+        setDob(selectedDate.toLocaleDateString());
+      }
+    } else {
+      // En iOS, solo actualizar la fecha, dejar que el botón "Apply" cierre
+      if (selectedDate) {
+        setSelectedDate(selectedDate);
+      }
+    }
   };
 
   const handleApplyDate = () => {
@@ -66,159 +79,175 @@ function SignUp({ navigation }) {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 100}
-    >
-      <ImageBackground source={require('../../assets/img/Background.png')} style={styles.background}>
-        <View style={styles.mainContainer}>
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={{ position: 'absolute', top: 60, left: 20, zIndex: 10 }}
+    <ImageBackground source={require('../../assets/img/Background.png')} style={styles.background}>
+      <SafeAreaView style={{flex: 1}}>
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+        >
+          <ScrollView
+            contentContainerStyle={{ flexGrow: 1 }}
+            keyboardShouldPersistTaps="handled"
           >
-            <Ionicons name="arrow-back" size={28} color="white" />
-          </TouchableOpacity>
+            <View style={styles.mainContainer}>
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                style={{ position: 'absolute', top: 60, left: 20, zIndex: 10 }}
+              >
+                <Ionicons name="arrow-back" size={28} color="white" />
+              </TouchableOpacity>
 
-          <Image source={require('../../assets/img/FEXO LOGO-NO BACKGROUND.png')} style={styles.img} />
-          <Text style={styles.title}>Create account</Text>
-          <View style={styles.pressed}>
-            <Text style={styles.pressedText2}>Already have an account? </Text>
-            <Pressable onPress={() => navigation.navigate('FEXO')}>
-              <Text style={styles.signUp}>Login</Text>
-            </Pressable>
-          </View>
-
-          {/* Shipper / Carrier toggle */}
-          <View style={styles.userTypeToggle}>
-            <TouchableOpacity
-              style={[
-                styles.userTypeButton,
-                userType === 'Shipper' && styles.selectedUserTypeButton
-              ]}
-              onPress={() => setUserType('Shipper')}
-            >
-              <Text style={[
-                styles.userTypeText,
-                userType === 'Shipper' && styles.selectedUserTypeText
-              ]}>Shipper</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[
-                styles.userTypeButton,
-                userType === 'Carrier' && styles.selectedUserTypeButton
-              ]}
-              onPress={() => setUserType('Carrier')}
-            >
-              <Text style={[
-                styles.userTypeText,
-                userType === 'Carrier' && styles.selectedUserTypeText
-              ]}>Carrier</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.form}>
-            <View style={styles.inputContainer}>
-
-              {/* Full Name */}
-              <View style={styles.textBox}>
-                <FontAwesome name="user-o" size={20} color="#6c757d" style={styles.icon} />
-                <TextInput
-                  placeholder="Full Name"
-                  style={styles.input}
-                  value={fullName}
-                  onChangeText={setFullName}
-                />
+              <Image source={require('../../assets/img/FEXO LOGO-NO BACKGROUND.png')} style={styles.img} />
+              <Text style={styles.title}>Create account</Text>
+              <View style={styles.pressed}>
+                <Text style={styles.pressedText2}>Already have an account? </Text>
+                <Pressable onPress={() => navigation.navigate('FEXO')}>
+                  <Text style={styles.signUp}>Login</Text>
+                </Pressable>
               </View>
 
-              {/* Email */}
-              <View style={styles.textBox}>
-                <Ionicons name="mail-outline" size={20} color="#6c757d" style={styles.icon} />
-                <TextInput
-                  placeholder="Email"
-                  style={styles.input}
-                  keyboardType="email-address"
-                  value={email}
-                  onChangeText={setEmail}
-                />
+              {/* Shipper / Carrier toggle */}
+              <View style={styles.userTypeToggle}>
+                <TouchableOpacity
+                  style={[
+                    styles.userTypeButton,
+                    userType === 'Shipper' && styles.selectedUserTypeButton
+                  ]}
+                  onPress={() => setUserType('Shipper')}
+                >
+                  <Text style={[
+                    styles.userTypeText,
+                    userType === 'Shipper' && styles.selectedUserTypeText
+                  ]}>Shipper</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={[
+                    styles.userTypeButton,
+                    userType === 'Carrier' && styles.selectedUserTypeButton
+                  ]}
+                  onPress={() => setUserType('Carrier')}
+                >
+                  <Text style={[
+                    styles.userTypeText,
+                    userType === 'Carrier' && styles.selectedUserTypeText
+                  ]}>Carrier</Text>
+                </TouchableOpacity>
               </View>
+
+              <View style={styles.form}>
+                <View style={styles.inputContainer}>
+
+                  {/* Full Name */}
+                  <View style={styles.textBox}>
+                    <FontAwesome name="user-o" size={20} color="#6c757d" style={styles.icon} />
+                    <TextInput
+                      placeholder="Full Name"
+                      style={styles.input}
+                      value={fullName}
+                      onChangeText={setFullName}
+                    />
+                  </View>
+
+                  {/* Email */}
+                  <View style={styles.textBox}>
+                    <Ionicons name="mail-outline" size={20} color="#6c757d" style={styles.icon} />
+                    <TextInput
+                      placeholder="Email"
+                      style={styles.input}
+                      keyboardType="email-address"
+                      value={email}
+                      onChangeText={setEmail}
+                    />
+                  </View>
 
                   {/* Business Name (only for Shipper) */}
                   {userType === 'Shipper' && (
-                <View style={styles.textBox}>
-                  <FontAwesome name="building-o" size={20} color="#6c757d" style={styles.icon} />
-                  <TextInput
-                    placeholder="Business Name"
-                    style={styles.input}
-                    value={businessName}
-                    onChangeText={setBusinessName}
-                  />
+                    <View style={styles.textBox}>
+                      <FontAwesome name="building-o" size={20} color="#6c757d" style={styles.icon} />
+                      <TextInput
+                        placeholder="Business Name"
+                        style={styles.input}
+                        value={businessName}
+                        onChangeText={setBusinessName}
+                      />
+                    </View>
+                  )}
+
+                  {/* Date of Birth */}
+                  <Pressable onPress={() => setShowDatePicker(true)} style={styles.textBox}>
+                    <MaterialIcons name="date-range" size={20} color="#6c757d" style={styles.icon} />
+                    <Text style={[styles.input, { paddingTop: 3, color: dob ? Colors.fexoBlue : '#6c757d' }]}>
+                      {dob ? dob : 'Date of Birth'}
+                    </Text>
+                  </Pressable>
+
+                  {/* Date Picker */}
+                  {showDatePicker && (
+                    Platform.OS === 'ios' ? (
+                      <View style={styles.datePickerContainer}>
+                        <DateTimePicker
+                          value={selectedDate}
+                          mode="date"
+                          display="spinner"
+                          onChange={handleDateChange}
+                        />
+                        <TouchableOpacity style={styles.applyButton} onPress={handleApplyDate}>
+                          <Text style={styles.btnText}>Apply Date</Text>
+                        </TouchableOpacity>
+                      </View>
+                    ) : (
+                      <DateTimePicker
+                        value={selectedDate}
+                        mode="date"
+                        display="spinner"
+                        onChange={handleDateChange}
+                      />
+                    )
+                  )}
+
+                  {/* Phone */}
+                  <View style={styles.textBox}>
+                    <Text style={{ marginRight: 10, color: '#6c757d' }}>+504</Text>
+                    <TextInput
+                      placeholder="Phone Number"
+                      style={styles.input}
+                      keyboardType="phone-pad"
+                      value={phone}
+                      onChangeText={setPhone}
+                    />
+                  </View>
+
+                  {/* Password */}
+                  <View style={styles.textBox}>
+                    <Ionicons name="lock-closed-outline" size={20} color="#6c757d" style={styles.icon} />
+                    <TextInput
+                      placeholder="Password"
+                      style={styles.input}
+                      secureTextEntry={!showPassword}
+                      value={password}
+                      onChangeText={setPassword}
+                    />
+                    <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                      <Ionicons
+                        name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+                        size={20}
+                        color="#6c757d"
+                      />
+                    </TouchableOpacity>
+                  </View>
                 </View>
-              )}
 
-              {/* Date of Birth */}
-              <Pressable onPress={() => setShowDatePicker(true)} style={styles.textBox}>
-                <MaterialIcons name="date-range" size={20} color="#6c757d" style={styles.icon} />
-                <Text style={[styles.input, { paddingTop: 3, color: dob ? Colors.fexoBlue : '#6c757d' }]}>
-                  {dob ? dob : 'Date of Birth'}
-                </Text>
-              </Pressable>
-
-              {/* Date Picker */}
-              {showDatePicker && (
-                <View style={styles.datePickerContainer}>
-                  <DateTimePicker
-                    value={selectedDate}
-                    mode="date"
-                    display="spinner"
-                    onChange={handleDateChange}
-                  />
-                  <TouchableOpacity style={styles.applyButton} onPress={handleApplyDate}>
-                    <Text style={styles.btnText}>Apply Date</Text>
-                  </TouchableOpacity>
-                </View>
-              )}
-
-              {/* Phone */}
-              <View style={styles.textBox}>
-                <Text style={{ marginRight: 10, color: '#6c757d' }}>+504</Text>
-                <TextInput
-                  placeholder="Phone Number"
-                  style={styles.input}
-                  keyboardType="phone-pad"
-                  value={phone}
-                  onChangeText={setPhone}
-                />
-              </View>
-
-              {/* Password */}
-              <View style={styles.textBox}>
-                <Ionicons name="lock-closed-outline" size={20} color="#6c757d" style={styles.icon} />
-                <TextInput
-                  placeholder="Password"
-                  style={styles.input}
-                  secureTextEntry={!showPassword}
-                  value={password}
-                  onChangeText={setPassword}
-                />
-                <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                  <Ionicons
-                    name={showPassword ? 'eye-off-outline' : 'eye-outline'}
-                    size={20}
-                    color="#6c757d"
-                  />
+                <TouchableOpacity style={styles.btn} onPress={handleSignUp}>
+                  <Text style={styles.btnText}>Register</Text>
                 </TouchableOpacity>
               </View>
             </View>
-
-            <TouchableOpacity style={styles.btn} onPress={handleSignUp}>
-              <Text style={styles.btnText}>Register</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ImageBackground>
-    </KeyboardAvoidingView>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 }
 
