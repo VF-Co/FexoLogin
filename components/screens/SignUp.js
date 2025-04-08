@@ -21,6 +21,8 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 const auth = getAuth(appFirebase);
 
 function SignUp({ navigation }) {
+  const [userType, setUserType] = useState('Carrier'); // Shipper or Carrier
+  const [businessName, setBusinessName] = useState('');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [dob, setDob] = useState('');
@@ -40,23 +42,22 @@ function SignUp({ navigation }) {
     setShowDatePicker(false);
   };
 
-  // Create User with Firebase Authentication
   const handleSignUp = async () => {
-    if (!email || !password || !fullName || !phone || !dob) {
-      Alert.alert('Error', 'Please fill in all fields.');
+    if (
+      !email || !password || !fullName || !phone || !dob ||
+      (userType === 'Shipper' && !businessName)
+    ) {
+      Alert.alert('Error', 'Please fill in all required fields.');
       return;
     }
 
     try {
-      // Create user in Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // You can also store additional user data like full name, phone, and dob
-      // Store user data in Firestore or Realtime Database if necessary
+      // Add Firestore saving here later if needed
 
       Alert.alert('Success', 'Account created successfully');
-      // Navigate to login or main screen
       navigation.navigate('FEXO');
     } catch (error) {
       console.error('Error during sign up:', error);
@@ -74,12 +75,7 @@ function SignUp({ navigation }) {
         <View style={styles.mainContainer}>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            style={{
-              position: 'absolute',
-              top: 60,
-              left: 20,
-              zIndex: 10,
-            }}
+            style={{ position: 'absolute', top: 60, left: 20, zIndex: 10 }}
           >
             <Ionicons name="arrow-back" size={28} color="white" />
           </TouchableOpacity>
@@ -93,9 +89,39 @@ function SignUp({ navigation }) {
             </Pressable>
           </View>
 
+          {/* Shipper / Carrier toggle */}
+          <View style={styles.userTypeToggle}>
+            <TouchableOpacity
+              style={[
+                styles.userTypeButton,
+                userType === 'Shipper' && styles.selectedUserTypeButton
+              ]}
+              onPress={() => setUserType('Shipper')}
+            >
+              <Text style={[
+                styles.userTypeText,
+                userType === 'Shipper' && styles.selectedUserTypeText
+              ]}>Shipper</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[
+                styles.userTypeButton,
+                userType === 'Carrier' && styles.selectedUserTypeButton
+              ]}
+              onPress={() => setUserType('Carrier')}
+            >
+              <Text style={[
+                styles.userTypeText,
+                userType === 'Carrier' && styles.selectedUserTypeText
+              ]}>Carrier</Text>
+            </TouchableOpacity>
+          </View>
+
           <View style={styles.form}>
-            {/* Full Name */}
             <View style={styles.inputContainer}>
+
+              {/* Full Name */}
               <View style={styles.textBox}>
                 <FontAwesome name="user-o" size={20} color="#6c757d" style={styles.icon} />
                 <TextInput
@@ -118,6 +144,19 @@ function SignUp({ navigation }) {
                 />
               </View>
 
+                  {/* Business Name (only for Shipper) */}
+                  {userType === 'Shipper' && (
+                <View style={styles.textBox}>
+                  <FontAwesome name="building-o" size={20} color="#6c757d" style={styles.icon} />
+                  <TextInput
+                    placeholder="Business Name"
+                    style={styles.input}
+                    value={businessName}
+                    onChangeText={setBusinessName}
+                  />
+                </View>
+              )}
+
               {/* Date of Birth */}
               <Pressable onPress={() => setShowDatePicker(true)} style={styles.textBox}>
                 <MaterialIcons name="date-range" size={20} color="#6c757d" style={styles.icon} />
@@ -126,7 +165,7 @@ function SignUp({ navigation }) {
                 </Text>
               </Pressable>
 
-              {/* Date Time Picker */}
+              {/* Date Picker */}
               {showDatePicker && (
                 <View style={styles.datePickerContainer}>
                   <DateTimePicker
@@ -135,10 +174,7 @@ function SignUp({ navigation }) {
                     display="spinner"
                     onChange={handleDateChange}
                   />
-                  <TouchableOpacity
-                    style={styles.applyButton}
-                    onPress={handleApplyDate}
-                  >
+                  <TouchableOpacity style={styles.applyButton} onPress={handleApplyDate}>
                     <Text style={styles.btnText}>Apply Date</Text>
                   </TouchableOpacity>
                 </View>
@@ -176,7 +212,6 @@ function SignUp({ navigation }) {
               </View>
             </View>
 
-            {/* Register Button */}
             <TouchableOpacity style={styles.btn} onPress={handleSignUp}>
               <Text style={styles.btnText}>Register</Text>
             </TouchableOpacity>
@@ -282,6 +317,28 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     alignItems: 'center',
+  },
+  userTypeToggle: {
+    flexDirection: 'row',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  userTypeButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    marginHorizontal: 5,
+    backgroundColor: Colors.fexoGrey,
+  },
+  selectedUserTypeButton: {
+    backgroundColor: Colors.fexoOrange,
+  },
+  userTypeText: {
+    color: Colors.fexoWhite,
+    fontWeight: 'bold',
+  },
+  selectedUserTypeText: {
+    color: Colors.fexoWhite,
   },
 });
 
