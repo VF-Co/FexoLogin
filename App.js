@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import 'react-native-gesture-handler';
+import 'react-native-reanimated'
 
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -62,7 +63,7 @@ export default function App() {
           tabBarInactiveTintColor: 'gray',
         })}
       >
-        <Tabs.Screen name="Home" component={MainShipperLandingPage} />
+        <Tabs.Screen name="Home" component={MainShipperLandingPage} options={{headerShown: false}}/>
         <Tabs.Screen name="Trips" component={ShipperTripScreen} />
         <Tabs.Screen name="Search" component={ShipperSearch} />
         <Tabs.Screen name="Payments" component={ShipperPayment} />
@@ -150,14 +151,17 @@ export default function App() {
         <Stack.Screen
           name='TripForm'
           component={TripsForm}
-          options={{headerShown: true}}
+          options={{
+            headerShown: true,
+            title: 'Workorder'
+          }}
         />
         <Stack.Screen
           name='ClientSearch'
           component={TripClientSearch}
           options={{headerShown: true}}
         />
-         <Stack.Screen
+        <Stack.Screen
         name="SignUp"
         component={SignUp}
         options={{ headerShown: false }}

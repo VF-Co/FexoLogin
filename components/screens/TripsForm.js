@@ -10,6 +10,7 @@ import {
     Pressable,
     Switch,
     SafeAreaView,
+    TouchableOpacity
 } from "react-native";
 import { Ionicons } from '@expo/vector-icons'
 import Colors from '../../globals/colors';
