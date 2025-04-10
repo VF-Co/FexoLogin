@@ -103,7 +103,6 @@ export default function Login(props) {
     };    
 
     return (
-        <ImageBackground source={require('../../assets/img/Background.png')} style={styles.background}>
             <SafeAreaView style={{flex: 1}}>
                 <KeyboardAvoidingView
                     style={{ flex: 1 }}
@@ -116,7 +115,7 @@ export default function Login(props) {
                     >
                         <View style={styles.mainContainer}>
                             <View>
-                                <Image source={require('../../assets/img/FEXO LOGO-NO BACKGROUND.png')} style={styles.img}/>
+                                <Image source={require('../../assets/img/FEXO-LOGO.jpg')} style={styles.img}/>
                             </View>
 
                             <View>
@@ -171,7 +170,6 @@ export default function Login(props) {
                     </ScrollView>
                 </KeyboardAvoidingView>
             </SafeAreaView>
-        </ImageBackground>
     );
 }
 
@@ -180,8 +178,9 @@ const styles = StyleSheet.create({
     img: {
         width: 350,
         height: 150,
-        borderRadius: 50,
-        alignItems: 'center'
+        borderRadius: 15,
+        alignItems: 'center',
+        marginBottom: 20
     },
     background: {
         flex: 1,
@@ -192,17 +191,17 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent', // Elimina el color de fondo
+        backgroundColor: Colors.fexoWhite // Elimina el color de fondo
     },
     title: {
         fontSize: 36,
         fontWeight: '700',
         textAlign: 'center',
-        color: Colors.fexoWhite,
+        color: Colors.fexoBlue,
         marginBottom: 10
     },
     subTitle: {
-        color: Colors.fexoWhite,
+        color: Colors.fexoBlue,
         marginBottom: 0,
         textAlign: 'center'
     },
@@ -214,6 +213,7 @@ const styles = StyleSheet.create({
         width: '95%',
         padding: 20,
         backgroundColor: 'transparent',
+        shadowOpacity: 0.3,
     },
     inputContainer: {
         borderRadius: 10, // Bordes redondeados solo en el exterior
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
         marginTop: -2,
         width: '100%',
         paddingHorizontal: 10,
-        backgroundColor: Colors.fexoWhite,
+        backgroundColor: "#ffffff",
     },
     icon: {
         marginRight: 10,
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     },
     btn: {
         padding: 12,
-        borderRadius: 35,
+        borderRadius: 20,
         backgroundColor: Colors.fexoOrange,
         marginTop: 15,
         width: '100%',
@@ -260,14 +260,14 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     pressedText: {
-        color: Colors.fexoWhite,
+        color: Colors.fexoBlue,
         textDecorationLine: 'underline'
     },
     pressedText2: {
         marginTop: 0,
-        color: Colors.fexoWhite,
+        color: Colors.fexoBlue,
     },
     signUp: {
-        color: '#4D81E7',
+        color:Colors.fexoBlue,
     },
 });
