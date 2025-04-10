@@ -11,9 +11,9 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		7CE50024A9210CCABE95AF0A /* Pods_FEXO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D03420FE681257BB64978C5D /* Pods_FEXO.framework */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		BE76764F87F084F7EF2CEF61 /* Pods_FEXO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831159B43AEF69097D645E92 /* Pods_FEXO.framework */; };
 		F3A42E729BD5402611BE49BC /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3092D7A5650A81A8FFB065D1 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
@@ -25,11 +25,11 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FEXO/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FEXO/main.m; sourceTree = "<group>"; };
 		3092D7A5650A81A8FFB065D1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = FEXO/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		500C5243FBE03C60AAAE073C /* Pods-FEXO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FEXO.debug.xcconfig"; path = "Target Support Files/Pods-FEXO/Pods-FEXO.debug.xcconfig"; sourceTree = "<group>"; };
-		61B653B0FE43936B600D0182 /* Pods-FEXO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FEXO.release.xcconfig"; path = "Target Support Files/Pods-FEXO/Pods-FEXO.release.xcconfig"; sourceTree = "<group>"; };
+		831159B43AEF69097D645E92 /* Pods_FEXO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FEXO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = FEXO/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		D03420FE681257BB64978C5D /* Pods_FEXO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FEXO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6315211F2A7100C70827BC4 /* Pods-FEXO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FEXO.release.xcconfig"; path = "Target Support Files/Pods-FEXO/Pods-FEXO.release.xcconfig"; sourceTree = "<group>"; };
+		E5CDE6CF912BFC1DE99258D1 /* Pods-FEXO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FEXO.debug.xcconfig"; path = "Target Support Files/Pods-FEXO/Pods-FEXO.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-FEXO/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -39,7 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CE50024A9210CCABE95AF0A /* Pods_FEXO.framework in Frameworks */,
+				BE76764F87F084F7EF2CEF61 /* Pods_FEXO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,7 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				D03420FE681257BB64978C5D /* Pods_FEXO.framework */,
+				831159B43AEF69097D645E92 /* Pods_FEXO.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -120,8 +120,8 @@
 		D65327D7A22EEC0BE12398D9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				500C5243FBE03C60AAAE073C /* Pods-FEXO.debug.xcconfig */,
-				61B653B0FE43936B600D0182 /* Pods-FEXO.release.xcconfig */,
+				E5CDE6CF912BFC1DE99258D1 /* Pods-FEXO.debug.xcconfig */,
+				C6315211F2A7100C70827BC4 /* Pods-FEXO.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -141,14 +141,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "FEXO" */;
 			buildPhases = (
-				5AFDA1F3B5B2DF2468B4DAD6 /* [CP] Check Pods Manifest.lock */,
+				6CE9AB5D9E079F4068E2EF58 /* [CP] Check Pods Manifest.lock */,
 				125F2000B52B0B1FB3ABE2B3 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				5127E1B3138EECB2CED3042A /* [CP] Embed Pods Frameworks */,
-				6192E68C8981DCE9626F025A /* [CP] Copy Pods Resources */,
+				14C1B974CB1B054D66203A41 /* [CP] Embed Pods Frameworks */,
+				60165C8343B90563E3AD724A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -239,7 +239,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-FEXO/expo-configure-project.sh\"\n";
 		};
-		5127E1B3138EECB2CED3042A /* [CP] Embed Pods Frameworks */ = {
+		14C1B974CB1B054D66203A41 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -257,29 +257,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FEXO/Pods-FEXO-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5AFDA1F3B5B2DF2468B4DAD6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FEXO-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6192E68C8981DCE9626F025A /* [CP] Copy Pods Resources */ = {
+		60165C8343B90563E3AD724A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -321,6 +299,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FEXO/Pods-FEXO-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6CE9AB5D9E079F4068E2EF58 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FEXO-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -339,7 +339,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 500C5243FBE03C60AAAE073C /* Pods-FEXO.debug.xcconfig */;
+			baseConfigurationReference = E5CDE6CF912BFC1DE99258D1 /* Pods-FEXO.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -369,7 +369,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61B653B0FE43936B600D0182 /* Pods-FEXO.release.xcconfig */;
+			baseConfigurationReference = C6315211F2A7100C70827BC4 /* Pods-FEXO.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

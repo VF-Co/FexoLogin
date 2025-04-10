@@ -23,10 +23,12 @@ function MainShipperLandingPageContent() {
     const [activeTab, setActiveTab] = useState("Accounts");
     const [showTrips, setShowTrips] = useState(false);
     const [showOptions, setShowOptions] = useState(false);
+    const [showBanking, setShowBanking] = useState(false);
     const [search, setSearch] = useState("");
 
     const toggleTrips = () => setShowTrips(!showTrips);
     const toggleOptions = () => setShowOptions(!showOptions);
+    const toggleBanking = () => setShowBanking(!showBanking)
     const handleInitialScreen = () => {
         navigation.reset({
             index: 0,
@@ -45,57 +47,47 @@ function MainShipperLandingPageContent() {
                 keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
             >
                 <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
-                    <View style={styles.container}>
-
-                        {/* Header w/ Tabs */}
-                        <View style={styles.headerRow}>
-                            <View style={styles.tabsRow}>
-                                {["Accounts", "Dashboard"].map((tab) => (
-                                    <Pressable key={tab} style={styles.tabItem} onPress={() => setActiveTab(tab)}>
-                                        <Text style={[styles.tabText, activeTab === tab && styles.tabTextActive]}>
-                                            {tab}
-                                        </Text>
-                                        {activeTab === tab && <View style={styles.underline} />}
-                                    </Pressable>
-                                ))}
-                            </View>
+                    {/* Header w/ Tabs */}
+                    <View style={styles.headerRow}>
+                        <View style={styles.tabsRow}>
+                            {["Accounts", "Dashboard"].map((tab) => (
+                                <Pressable key={tab} style={styles.tabItem} onPress={() => setActiveTab(tab)}>
+                                    <Text style={[styles.tabText, activeTab === tab && styles.tabTextActive]}>
+                                        {tab}
+                                    </Text>
+                                    {activeTab === tab && <View style={styles.underline} />}
+                                </Pressable>
+                            ))}
                         </View>
-
+                    </View>
+                    <View style={styles.container}>
                         {/* Search */}
                         <View style={styles.textBox}>
                             <Ionicons name="search-outline" size={20} style={styles.icon} />
                             <TextInput
                                 style={styles.searchBar}
-                                placeholder="Search..."
+                                placeholder="AI Assistant will be soon..."
                                 value={search}
                                 onChangeText={setSearch}
                                 placeholderTextColor="#888"
                             />
                         </View>
 
-                        {/* Greeting Card */}
+                        {/* Greeting & Dropdowns */}
                         <View style={styles.card}>
-                            <Text style={styles.greeting}>Hello, User</Text>
-                            <Text style={styles.subtext}>Mini Description...</Text>
-                        </View>
-
-                        {/* Create Work Order Card */}
-                        <View style={styles.card}>
-                            <Text style={styles.greeting}>Create Work Order</Text>
-
-                            {/* Grey Separation Line inside the card */}
+                            <View>
+                                <Text style={styles.greeting}>Hello, User</Text>
+                                <Text style={styles.subtext}>Mini Description...</Text>
+                            </View>
+                            
                             <View style={styles.innerSeparator}></View>
-
-                            <Pressable style={styles.specialBtn} onPress={HandlerWorkorder}>
-                                <Text style={styles.specialBtnText}>Create Work Order +</Text>
-                            </Pressable>
-                        </View>
-
-                        {/* Dropdowns */}
-                        <View style={styles.selectContainer}>
+                            {/* Trips Dropdown */}
                             <Pressable onPress={toggleTrips} style={styles.select}>
-                                <Text style={styles.selectText}>Trips</Text>
-                                <Ionicons name={showTrips ? "chevron-up" : "chevron-down"} size={20} color="white" />
+                                <View>
+                                    <Text style={styles.selectText}>Trips</Text>
+                                    <Text style={styles.subtext}>Mini Description...</Text>
+                                </View>
+                                <Ionicons name={showTrips ? "chevron-up" : "chevron-down"} size={20} color="black" />
                             </Pressable>
                             {showTrips && (
                                 <View style={styles.dropdown}>
@@ -106,16 +98,55 @@ function MainShipperLandingPageContent() {
                                     ))}
                                 </View>
                             )}
-
+                            <View style={styles.innerSeparator}></View>
+                            {/* Options Dropdown */}
                             <Pressable onPress={toggleOptions} style={styles.select}>
-                                <Text style={styles.selectText}>Options</Text>
-                                <Ionicons name={showOptions ? "chevron-up" : "chevron-down"} size={20} color="white" />
+                                <View>
+                                    <Text style={styles.selectText}>Options</Text>
+                                    <Text style={styles.subtext}>Mini Description...</Text>
+                                </View>
+                                <Ionicons name={showOptions ? "chevron-up" : "chevron-down"} size={20} color="black" />
                             </Pressable>
                             {showOptions && (
                                 <View style={styles.dropdown}>
                                     <Pressable style={styles.dropdownItem} onPress={handleInitialScreen}>
                                         <Text style={styles.dropdownItemText}>Back to Initial Screen</Text>
                                     </Pressable>
+                                </View>
+                            )}
+                        </View>
+
+                        {/* Create Work Order Card */}
+                        <View style={styles.card}>
+                            <View style={styles.cardWO}>
+                                <Ionicons name='document-text-outline' size={20}/>
+                                <Text style={styles.greetingWO}>Create Work Order</Text>
+                            </View>
+
+                            {/* Grey Separation Line inside the card */}
+                            <View style={styles.innerSeparator}></View>
+
+                            <Pressable style={styles.specialBtn} onPress={HandlerWorkorder}>
+                                <Text style={styles.specialBtnText}>Add Workorder +</Text>
+                            </Pressable>
+                        </View>
+
+                        <View style={styles.card}>
+                            <View style={styles.orangeBar} />
+                            <Pressable onPress={toggleBanking} style={styles.select}>
+                                <View>
+                                    <Text style={styles.selectText}>Banking</Text>
+                                    <Text style={styles.subtext}>Your next steps are ready. Let's go!</Text>
+                                </View>
+                                <Ionicons name={showBanking ? "chevron-up" : "chevron-down"} size={20} color="black" />
+                            </Pressable>
+                            {showBanking && (
+                                <View style={styles.dropdown}>
+                                    {["Start Now", "Whats new", "Search options"].map((item, i) => (
+                                        <Pressable key={i} style={styles.dropdownItem}>
+                                            <Text style={styles.dropdownItemText}>{item}</Text>
+                                        </Pressable>
+                                    ))}
                                 </View>
                             )}
                         </View>
@@ -128,7 +159,17 @@ function MainShipperLandingPageContent() {
 
 export default function MainShipperLandingPage() {
     return (
-        <Drawer.Navigator initialRouteName="Shipper">
+        <Drawer.Navigator 
+            initialRouteName="Shipper"
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: '#ffffff',
+                    borderBottomWidth: 0,  // Eliminar la línea
+                    elevation: 0,  // Para evitar sombra en Android
+                    shadowColor: 'transparent',  // Para evitar sombra en iOS
+                }
+            }}
+        >
             <Drawer.Screen
                 name="Shipper"
                 component={MainShipperLandingPageContent}
@@ -170,10 +211,18 @@ const styles = StyleSheet.create({
         backgroundColor: "#f8f9fa",
     },
     headerRow: {
+        width: '100%',
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
-        marginBottom: 20,
+        justifyContent: "center",
+        backgroundColor: '#ffffff',
+        paddingVertical: 15,
+        marginBottom: 2,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.08,
+        shadowRadius: 6,
+        elevation: 6,
     },
     tabsRow: {
         flexDirection: "row",
@@ -200,6 +249,7 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     textBox: {
+        paddingHorizontal: 20,
         flexDirection: "row",
         alignItems: "center",
         borderColor: "#ced4da",
@@ -209,6 +259,11 @@ const styles = StyleSheet.create({
         backgroundColor: "#dee2e6",
         borderRadius: 20,
         paddingVertical: Platform.OS === "android" ? 0 : 8,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        shadowRadius: 6,
+        elevation: 6,
     },
     icon: {
         color: "#888",
@@ -222,22 +277,31 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: "#fff",
         padding: 20,
-        borderRadius: 15,
+        borderRadius: 15, // Para redondear las esquinas del card
         marginBottom: 15,
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.08,
+        shadowOpacity: 0.2,
         shadowRadius: 6,
-        elevation: 3,
+        elevation: 5,
+    },
+    cardWO: {
+        flexDirection: 'row',
     },
     greeting: {
         fontSize: 18,
         fontWeight: "600",
         color: "#1b263b",
     },
+    greetingWO: {
+        fontSize: 18,
+        fontWeight: "600",
+        color: "#1b263b",
+        marginLeft: 10
+    },
     subtext: {
         fontSize: 14,
-        color: "#6c757d",
+        color: Colors.fexoOrange,
         marginTop: 4,
     },
     specialBtn: {
@@ -258,27 +322,19 @@ const styles = StyleSheet.create({
     select: {
         flexDirection: "row",
         justifyContent: "space-between",
-        backgroundColor: Colors.fexoOrange,
-        padding: 15,
-        borderRadius: 15,
         alignItems: "center",
+        paddingVertical: 7, // Same padding as greeting
     },
     selectText: {
-        color: "white",
-        fontSize: 16,
-        fontWeight: "bold",
-    },
+        color: "#1b263b",
+        fontSize: 18,
+        fontWeight: "600",
+    },    
     dropdown: {
-        backgroundColor: "#ffffff",
-        borderRadius: 15,
+        backgroundColor: "transparent",
+        borderRadius: 15, // Same border radius for dropdown items
         marginTop: 0,
         paddingVertical: 10,
-        paddingHorizontal: 15,
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 6,
-        elevation: 5,
     },
     dropdownItem: {
         paddingVertical: 12,
@@ -290,6 +346,14 @@ const styles = StyleSheet.create({
         color: "#1b263b",
         fontWeight: "500",
     },
+    orangeBar: {
+        height: 6,
+        backgroundColor: Colors.fexoOrange,
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        marginTop: -20, // para que no empuje el contenido del card hacia abajo
+        marginHorizontal: -20, // para que ocupe todo el ancho del card
+    },    
     separator: {
         height: 1,
         backgroundColor: "#ccc",
