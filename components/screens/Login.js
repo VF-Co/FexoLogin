@@ -214,6 +214,7 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: 'transparent',
         shadowOpacity: 0.3,
+        // elevation: 4
     },
     inputContainer: {
         borderRadius: 10, // Bordes redondeados solo en el exterior
