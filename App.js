@@ -14,6 +14,7 @@ import Home from './components/screens/Home';
 import SessionManager from './components/screens/SessionManager';
 import FPassword1 from './components/screens/ForgetPassword/FPassword1';
 import SignUp from './components/screens/SignUp';
+import SettingsPage from './components/screens/Settings';
 
 
 //Shipper Screens
@@ -165,6 +166,11 @@ export default function App() {
         name="SignUp"
         component={SignUp}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+      name="Settings"
+      component={SettingsPage}
+      options={{ headerShown: true }}
       />
       </Stack.Navigator>
     );

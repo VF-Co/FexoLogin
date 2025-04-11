@@ -39,6 +39,10 @@ function MainShipperLandingPageContent() {
         navigation.navigate("TripForm");
     };
 
+    const handleArrowPress = () => {
+       navigation.navigate("Settings")
+    };
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <KeyboardAvoidingView
@@ -50,7 +54,7 @@ function MainShipperLandingPageContent() {
                     {/* Header w/ Tabs */}
                     <View style={styles.headerRow}>
                         <View style={styles.tabsRow}>
-                            {["Accounts", "Dashboard"].map((tab) => (
+                            {["Option 1", "Option 2"].map((tab) => (
                                 <Pressable key={tab} style={styles.tabItem} onPress={() => setActiveTab(tab)}>
                                     <Text style={[styles.tabText, activeTab === tab && styles.tabTextActive]}>
                                         {tab}
@@ -62,25 +66,40 @@ function MainShipperLandingPageContent() {
                     </View>
                     <View style={styles.container}>
                         {/* Search */}
+                       <View style={styles.searchContainer}>
                         <View style={styles.textBox}>
-                            <Ionicons name="search-outline" size={20} style={styles.icon} />
-                            <TextInput
-                                style={styles.searchBar}
-                                placeholder="AI Assistant will be soon..."
-                                value={search}
-                                onChangeText={setSearch}
-                                placeholderTextColor="#888"
-                            />
-                        </View>
+                           <Ionicons name="search-outline" size={20} style={styles.icon} />
+                           <TextInput
+                            style={styles.searchBar}
+                            placeholder="AI Assistant will be soon..."
+                            value={search}
+                            onChangeText={setSearch}
+                            placeholderTextColor="#888"
+                           />
+
+                       </View>
+                           <View>
+                              <Ionicons
+                                name="logo-slack" 
+                                size={30}
+                                style={styles.iconRight}
+                              />
+                           </View>
+                        </View>         
+
 
                         {/* Greeting & Dropdowns */}
                         <View style={styles.card}>
-                            <View>
-                                <Text style={styles.greeting}>Hello, User</Text>
-                                <Text style={styles.subtext}>Mini Description...</Text>
-                            </View>
-                            
+                            <Pressable onPress={handleArrowPress} style={styles.greetingContainer}>
+                                <View>
+                                    <Text style={styles.greeting}>Hello, User</Text>
+                                    <Text style={styles.subtext}>Mini Description...</Text>
+                                </View>
+                                <Ionicons name="chevron-forward" size={20} color="black" />
+                            </Pressable>
+
                             <View style={styles.innerSeparator}></View>
+
                             {/* Trips Dropdown */}
                             <Pressable onPress={toggleTrips} style={styles.select}>
                                 <View>
@@ -91,14 +110,23 @@ function MainShipperLandingPageContent() {
                             </Pressable>
                             {showTrips && (
                                 <View style={styles.dropdown}>
-                                    {["Active Trip", "Upcoming Trips", "Search Trips"].map((item, i) => (
-                                        <Pressable key={i} style={styles.dropdownItem}>
-                                            <Text style={styles.dropdownItemText}>{item}</Text>
-                                        </Pressable>
-                                    ))}
+                                    <Pressable style={styles.dropdownItem}>
+                                        <Ionicons name="navigate-outline" size={18} style={styles.dropdownIcon} />
+                                        <Text style={styles.dropdownItemText}>Active Trip</Text>
+                                    </Pressable>
+                                    <Pressable style={styles.dropdownItem}>
+                                        <Ionicons name="calendar-outline" size={18} style={styles.dropdownIcon} />
+                                        <Text style={styles.dropdownItemText}>Upcoming Trips</Text>
+                                    </Pressable>
+                                    <Pressable style={styles.dropdownItem}>
+                                        <Ionicons name="search-outline" size={18} style={styles.dropdownIcon} />
+                                        <Text style={styles.dropdownItemText}>Search Trips</Text>
+                                    </Pressable>
                                 </View>
                             )}
+
                             <View style={styles.innerSeparator}></View>
+
                             {/* Options Dropdown */}
                             <Pressable onPress={toggleOptions} style={styles.select}>
                                 <View>
@@ -110,6 +138,7 @@ function MainShipperLandingPageContent() {
                             {showOptions && (
                                 <View style={styles.dropdown}>
                                     <Pressable style={styles.dropdownItem} onPress={handleInitialScreen}>
+                                        <Ionicons name="arrow-back-outline" size={18} style={styles.dropdownIcon} />
                                         <Text style={styles.dropdownItemText}>Back to Initial Screen</Text>
                                     </Pressable>
                                 </View>
@@ -123,7 +152,6 @@ function MainShipperLandingPageContent() {
                                 <Text style={styles.greetingWO}>Create Work Order</Text>
                             </View>
 
-                            {/* Grey Separation Line inside the card */}
                             <View style={styles.innerSeparator}></View>
 
                             <Pressable style={styles.specialBtn} onPress={HandlerWorkorder}>
@@ -135,18 +163,25 @@ function MainShipperLandingPageContent() {
                             <View style={styles.orangeBar} />
                             <Pressable onPress={toggleBanking} style={styles.select}>
                                 <View>
-                                    <Text style={styles.selectText}>Banking</Text>
-                                    <Text style={styles.subtext}>Your next steps are ready. Let's go!</Text>
+                                    <Text style={styles.selectText}>Title</Text>
+                                    <Text style={styles.subtext}>Main Description</Text>
                                 </View>
                                 <Ionicons name={showBanking ? "chevron-up" : "chevron-down"} size={20} color="black" />
                             </Pressable>
                             {showBanking && (
                                 <View style={styles.dropdown}>
-                                    {["Start Now", "Whats new", "Search options"].map((item, i) => (
-                                        <Pressable key={i} style={styles.dropdownItem}>
-                                            <Text style={styles.dropdownItemText}>{item}</Text>
-                                        </Pressable>
-                                    ))}
+                                    <Pressable style={styles.dropdownItem}>
+                                        <Ionicons name="flash-outline" size={18} style={styles.dropdownIcon} />
+                                        <Text style={styles.dropdownItemText}>Start Now</Text>
+                                    </Pressable>
+                                    <Pressable style={styles.dropdownItem}>
+                                        <Ionicons name="bulb-outline" size={18} style={styles.dropdownIcon} />
+                                        <Text style={styles.dropdownItemText}>Whats new</Text>
+                                    </Pressable>
+                                    <Pressable style={styles.dropdownItem}>
+                                        <Ionicons name="search-circle-outline" size={18} style={styles.dropdownIcon} />
+                                        <Text style={styles.dropdownItemText}>Search options</Text>
+                                    </Pressable>
                                 </View>
                             )}
                         </View>
@@ -159,15 +194,33 @@ function MainShipperLandingPageContent() {
 
 export default function MainShipperLandingPage() {
     return (
-        <Drawer.Navigator 
+        <Drawer.Navigator
             initialRouteName="Shipper"
             screenOptions={{
                 headerStyle: {
                     backgroundColor: '#ffffff',
-                    borderBottomWidth: 0,  // Eliminar la línea
-                    elevation: 0,  // Para evitar sombra en Android
-                    shadowColor: 'transparent',  // Para evitar sombra en iOS
-                }
+                    borderBottomWidth: 0,
+                    elevation: 0,
+                    shadowColor: 'transparent',
+                },
+                headerRight: () => (
+                    <View style={styles.headerIconsContainer}>
+                        <TouchableOpacity
+                            onPress={() => console.log("Notifications pressed")}
+                            style={styles.iconButton}
+                        >
+                            <Ionicons name="notifications-outline" size={24} color="#000" />
+                            <Text style={styles.iconLabel}>Notifications</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => console.log("Logout pressed")}
+                            style={styles.iconButton}
+                        >
+                            <Ionicons name="log-out-outline" size={24} color="#000" />
+                            <Text style={styles.iconLabel}>Log Out</Text>
+                        </TouchableOpacity>
+                    </View>
+                ),
             }}
         >
             <Drawer.Screen
@@ -179,22 +232,23 @@ export default function MainShipperLandingPage() {
                 }}
             />
             <Drawer.Screen
-                name="Settings"
-                component={() => <View style={styles.screen}><Text>Settings Page</Text></View>}
-                options={{
-                    drawerIcon: ({ color }) => <Ionicons name="settings" size={24} color={color} />,
-                }}
-            />
-            <Drawer.Screen
                 name="Account"
-                component={() => <View style={styles.screen}><Text>Account Page</Text></View>}
+                component={() => (
+                    <View style={styles.screen}>
+                        <Text>Account Page</Text>
+                    </View>
+                )}
                 options={{
                     drawerIcon: ({ color }) => <Ionicons name="key-outline" size={24} color={color} />,
                 }}
             />
             <Drawer.Screen
                 name="Logout"
-                component={() => <View style={styles.screen}><Text>Logging out...</Text></View>}
+                component={() => (
+                    <View style={styles.screen}>
+                        <Text>Logging out...</Text>
+                    </View>
+                )}
                 options={{
                     drawerIcon: ({ color }) => <Ionicons name="log-out" size={24} color={color} />,
                 }}
@@ -216,13 +270,14 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: '#ffffff',
-        paddingVertical: 15,
+        paddingVertical: 0,
         marginBottom: 2,
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.08,
         shadowRadius: 6,
         elevation: 6,
+        paddingTop: 20
     },
     tabsRow: {
         flexDirection: "row",
@@ -237,6 +292,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: "#6c757d",
         fontWeight: "500",
+        paddingBottom: 7
     },
     tabTextActive: {
         color: Colors.fexoOrange,
@@ -247,6 +303,9 @@ const styles = StyleSheet.create({
         height: 2,
         backgroundColor: Colors.fexoOrange,
         width: "100%",
+    },
+    searchContainer: {
+        flexDirection: "row"
     },
     textBox: {
         paddingHorizontal: 20,
@@ -264,6 +323,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 6,
         elevation: 6,
+        width: "85%", 
     },
     icon: {
         color: "#888",
@@ -273,11 +333,12 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 16,
         color: "#000",
+        paddingHorizontal: 15,
     },
     card: {
         backgroundColor: "#fff",
         padding: 20,
-        borderRadius: 15, // Para redondear las esquinas del card
+        borderRadius: 15,
         marginBottom: 15,
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 3 },
@@ -287,6 +348,11 @@ const styles = StyleSheet.create({
     },
     cardWO: {
         flexDirection: 'row',
+    },
+    greetingContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     greeting: {
         fontSize: 18,
@@ -316,14 +382,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "bold",
     },
-    selectContainer: {
-        gap: 20,
-    },
     select: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingVertical: 7, // Same padding as greeting
+        paddingVertical: 7,
     },
     selectText: {
         color: "#1b263b",
@@ -332,14 +395,21 @@ const styles = StyleSheet.create({
     },    
     dropdown: {
         backgroundColor: "transparent",
-        borderRadius: 15, // Same border radius for dropdown items
+        borderRadius: 15,
         marginTop: 0,
         paddingVertical: 10,
     },
     dropdownItem: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 10,
         paddingVertical: 12,
         borderBottomWidth: 1,
         borderColor: "#eee",
+    },
+    dropdownIcon: {
+        marginRight: 8,
+        color: "#1b263b"
     },
     dropdownItemText: {
         fontSize: 16,
@@ -351,8 +421,8 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.fexoOrange,
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
-        marginTop: -20, // para que no empuje el contenido del card hacia abajo
-        marginHorizontal: -20, // para que ocupe todo el ancho del card
+        marginTop: -20,
+        marginHorizontal: -20,
     },    
     separator: {
         height: 1,
@@ -368,5 +438,25 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+    },
+    headerIconsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        marginRight: 20,
+    },
+    iconButton: {
+        alignItems: 'center',
+        marginLeft: 25,
+    },
+    iconLabel: {
+        fontSize: 10,
+        color: '#000',
+        marginTop: 2,
+        textAlign: 'center',
+    },
+    iconRight: {
+        marginLeft: 10, 
+        color: "#1b263b", 
     },
 });

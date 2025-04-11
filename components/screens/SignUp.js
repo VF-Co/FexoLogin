@@ -23,7 +23,7 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 const auth = getAuth(appFirebase);
 
 function SignUp({ navigation }) {
-  const [userType, setUserType] = useState('Carrier'); // Shipper or Carrier
+  const [userType, setUserType] = useState('Carrier');
   const [businessName, setBusinessName] = useState('');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -36,14 +36,12 @@ function SignUp({ navigation }) {
 
   const handleDateChange = (event, selectedDate) => {
     if (Platform.OS === 'android') {
-      // En Android, cerrar el picker y actualizar la fecha si se selecciona
       setShowDatePicker(false);
       if (event.type === 'set' && selectedDate) {
         setSelectedDate(selectedDate);
         setDob(selectedDate.toLocaleDateString());
       }
     } else {
-      // En iOS, solo actualizar la fecha, dejar que el botón "Apply" cierre
       if (selectedDate) {
         setSelectedDate(selectedDate);
       }
@@ -66,10 +64,6 @@ function SignUp({ navigation }) {
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      // Add Firestore saving here later if needed
-
       Alert.alert('Success', 'Account created successfully');
       navigation.navigate('FEXO');
     } catch (error) {
@@ -79,68 +73,70 @@ function SignUp({ navigation }) {
   };
 
   return (
-    <ImageBackground source={require('../../assets/img/Background.png')} style={styles.background}>
-      <SafeAreaView style={{flex: 1}}>
-        <KeyboardAvoidingView
-          style={{ flex: 1 }}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+    <SafeAreaView style={{ flex: 1 }}>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+      >
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1 }}
+          keyboardShouldPersistTaps="handled"
         >
-          <ScrollView
-            contentContainerStyle={{ flexGrow: 1 }}
-            keyboardShouldPersistTaps="handled"
-          >
-            <View style={styles.mainContainer}>
-              <TouchableOpacity
-                onPress={() => navigation.goBack()}
-                style={{ position: 'absolute', top: 60, left: 20, zIndex: 10 }}
-              >
-                <Ionicons name="arrow-back" size={28} color="white" />
+          <View style={styles.mainContainer}>
+            <View style={styles.header}>
+              <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                <Ionicons name="arrow-back" size={28} color="black" />
               </TouchableOpacity>
+            </View>
 
-              <Image source={require('../../assets/img/FEXO LOGO-NO BACKGROUND.png')} style={styles.img} />
-              <Text style={styles.title}>Create account</Text>
-              <View style={styles.pressed}>
-                <Text style={styles.pressedText2}>Already have an account? </Text>
-                <Pressable onPress={() => navigation.navigate('FEXO')}>
-                  <Text style={styles.signUp}>Login</Text>
-                </Pressable>
-              </View>
+            <Image source={require('../../assets/img/FEXO-LOGO.jpg')} style={styles.img} />
+            <Text style={styles.title}>Create account</Text>
+            <View style={styles.pressed}>
+              <Text style={styles.pressedText2}>Already have an account? </Text>
+              <Pressable onPress={() => navigation.navigate('FEXO')}>
+                <Text style={styles.signUp}>Login</Text>
+              </Pressable>
+            </View>
+            <Text style={{ color: 'black', fontWeight: 'bold', marginVertical: 5 }}>
+              Select the preference of your account
+            </Text>
 
+            {/* Contenedor gris que abarca todo */}
+            <View style={styles.formContainer}>
               {/* Shipper / Carrier toggle */}
               <View style={styles.userTypeToggle}>
                 <TouchableOpacity
                   style={[
                     styles.userTypeButton,
-                    userType === 'Shipper' && styles.selectedUserTypeButton
+                    userType === 'Shipper' ? styles.selectedUserTypeButton : styles.inactiveUserTypeButton
                   ]}
                   onPress={() => setUserType('Shipper')}
                 >
                   <Text style={[
                     styles.userTypeText,
-                    userType === 'Shipper' && styles.selectedUserTypeText
+                    userType === 'Shipper' ? styles.selectedUserTypeText : styles.inactiveUserTypeText
                   ]}>Shipper</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                   style={[
                     styles.userTypeButton,
-                    userType === 'Carrier' && styles.selectedUserTypeButton
+                    userType === 'Carrier' ? styles.selectedUserTypeButton : styles.inactiveUserTypeButton
                   ]}
                   onPress={() => setUserType('Carrier')}
                 >
                   <Text style={[
                     styles.userTypeText,
-                    userType === 'Carrier' && styles.selectedUserTypeText
+                    userType === 'Carrier' ? styles.selectedUserTypeText : styles.inactiveUserTypeText
                   ]}>Carrier</Text>
                 </TouchableOpacity>
               </View>
 
               <View style={styles.form}>
                 <View style={styles.inputContainer}>
-
                   {/* Full Name */}
-                  <View style={styles.textBox}>
+                  <View style={[styles.textBox, { backgroundColor: Colors.fexoWhite }]}>
                     <FontAwesome name="user-o" size={20} color="#6c757d" style={styles.icon} />
                     <TextInput
                       placeholder="Full Name"
@@ -151,7 +147,7 @@ function SignUp({ navigation }) {
                   </View>
 
                   {/* Email */}
-                  <View style={styles.textBox}>
+                  <View style={[styles.textBox, { backgroundColor: Colors.fexoWhite }]}>
                     <Ionicons name="mail-outline" size={20} color="#6c757d" style={styles.icon} />
                     <TextInput
                       placeholder="Email"
@@ -164,7 +160,7 @@ function SignUp({ navigation }) {
 
                   {/* Business Name (only for Shipper) */}
                   {userType === 'Shipper' && (
-                    <View style={styles.textBox}>
+                    <View style={[styles.textBox, { backgroundColor: Colors.fexoWhite }]}>
                       <FontAwesome name="building-o" size={20} color="#6c757d" style={styles.icon} />
                       <TextInput
                         placeholder="Business Name"
@@ -176,7 +172,7 @@ function SignUp({ navigation }) {
                   )}
 
                   {/* Date of Birth */}
-                  <Pressable onPress={() => setShowDatePicker(true)} style={styles.textBox}>
+                  <Pressable onPress={() => setShowDatePicker(true)} style={[styles.textBox, { backgroundColor: Colors.fexoWhite }]}>
                     <MaterialIcons name="date-range" size={20} color="#6c757d" style={styles.icon} />
                     <Text style={[styles.input, { paddingTop: 3, color: dob ? Colors.fexoBlue : '#6c757d' }]}>
                       {dob ? dob : 'Date of Birth'}
@@ -208,7 +204,7 @@ function SignUp({ navigation }) {
                   )}
 
                   {/* Phone */}
-                  <View style={styles.textBox}>
+                  <View style={[styles.textBox, { backgroundColor: Colors.fexoWhite }]}>
                     <Text style={{ marginRight: 10, color: '#6c757d' }}>+504</Text>
                     <TextInput
                       placeholder="Phone Number"
@@ -220,7 +216,7 @@ function SignUp({ navigation }) {
                   </View>
 
                   {/* Password */}
-                  <View style={styles.textBox}>
+                  <View style={[styles.textBox, { backgroundColor: Colors.fexoWhite }]}>
                     <Ionicons name="lock-closed-outline" size={20} color="#6c757d" style={styles.icon} />
                     <TextInput
                       placeholder="Password"
@@ -243,29 +239,42 @@ function SignUp({ navigation }) {
                   <Text style={styles.btnText}>Register</Text>
                 </TouchableOpacity>
               </View>
+
+              <View style={styles.termsContainer}>
+                <Text style={{ color: '#777' }}>
+                  By signing in with an account, you agree to SO's
+                </Text>
+                <Text>Terms of Service and Privacy Policy.</Text>
+              </View>
             </View>
-          </ScrollView>
-        </KeyboardAvoidingView>
-      </SafeAreaView>
-    </ImageBackground>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  header: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    paddingTop: 20,
+    paddingLeft: 10,
+    marginBottom: 10,
+  },
+  backButton: {
+    padding: 10,
+  },
   img: {
     width: 350,
     height: 150,
-    borderRadius: 50,
+    borderRadius: 15,
     alignItems: 'center',
-  },
-  background: {
-    flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
+    marginBottom: 20,
   },
   mainContainer: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
   },
@@ -273,14 +282,18 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: '700',
     textAlign: 'center',
-    color: Colors.fexoWhite,
-    marginBottom: 10,
+    color: 'black',
+  },
+  formContainer: {
+    width: '100%',
+    backgroundColor: '#D1D5DBE6',
+    flexGrow: 1,
+    alignItems: 'center',
+    paddingBottom: 20,
   },
   form: {
-    margin: 20,
-    width: '95%',
+    width: '90%',
     padding: 20,
-    backgroundColor: 'transparent',
   },
   inputContainer: {
     borderRadius: 10,
@@ -295,7 +308,6 @@ const styles = StyleSheet.create({
     marginTop: -2,
     width: '100%',
     paddingHorizontal: 10,
-    backgroundColor: Colors.fexoWhite,
   },
   icon: {
     marginRight: 10,
@@ -328,10 +340,11 @@ const styles = StyleSheet.create({
   },
   pressedText2: {
     marginTop: 0,
-    color: Colors.fexoWhite,
+    color: Colors.fexoBlue,
   },
   signUp: {
-    color: '#4D81E7',
+    color: Colors.fexoBlue,
+    fontWeight: 'bold',
   },
   datePickerContainer: {
     zIndex: 2,
@@ -349,25 +362,38 @@ const styles = StyleSheet.create({
   },
   userTypeToggle: {
     flexDirection: 'row',
-    marginTop: 10,
+    // marginTop: 10,
     marginBottom: 10,
   },
   userTypeButton: {
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 20,
+    // borderRadius: -5,
+    width: '50%',
+    textAlign: 'center',
+    alignItems: 'center',
     marginHorizontal: 5,
-    backgroundColor: Colors.fexoGrey,
   },
   selectedUserTypeButton: {
-    backgroundColor: Colors.fexoOrange,
+    backgroundColor: '#D1D5DBE6',
+  },
+  inactiveUserTypeButton: {
+    backgroundColor: Colors.background,
   },
   userTypeText: {
-    color: Colors.fexoWhite,
     fontWeight: 'bold',
   },
   selectedUserTypeText: {
-    color: Colors.fexoWhite,
+    color: 'black',
+    fontSize: 20,
+  },
+  inactiveUserTypeText: {
+    color: 'black',
+    fontSize: 20,
+  },
+  termsContainer: {
+    alignItems: 'center',
+    marginTop: 20,
   },
 });
 
