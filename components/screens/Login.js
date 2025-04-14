@@ -173,7 +173,7 @@ export default function Login(props) {
     );
 }
 
-// Estilos (sin cambios)
+
 const styles = StyleSheet.create({
     img: {
         width: 350,
